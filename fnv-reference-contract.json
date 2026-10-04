@@ -1,0 +1,39 @@
+{
+  "contractVersion": 1,
+  "status": "inspected_reference_not_implemented_exporter",
+  "profile": "salvatore_replacement_v1",
+  "inspectionDate": "2026-09-30",
+  "plugin": "SalvatoreGonGetcha.esp",
+  "referenceBuilder": "work/geck-bridge/sprite_flipbook.py",
+  "assetPathsRelativeToData": {
+    "creatureVisual": "meshes/creatures/mistergutsy/salvatorebody.nif",
+    "droppedAndWeaponModel": "meshes/salvatore/salvatore_down.nif",
+    "inventoryIcon": "textures/Interface/Icons/PipboyImages/Weapons/salvatore.dds",
+    "music_loop": "sound/fx/salvatore/salv_music_lp.wav",
+    "defeated_loop": "sound/fx/salvatore/salv_deadloop_lp.wav",
+    "defeat_sting": "sound/fx/salvatore/salv_defeated.wav",
+    "release": "sound/fx/salvatore/salv_release.wav"
+  },
+  "visualConventions": {
+    "animation": "uv_offset_flipbook",
+    "uvSign": [-1, 1],
+    "billboardMode": 5,
+    "plane": "local_XZ_front_minus_Y",
+    "creatureAttachmentPrn": "Scene Root",
+    "creatureAttachmentOffsetZ": 0,
+    "referenceDefaultCanvasHeightUnits": 128,
+    "imagePreparation": ["alpha_weighted_resize", "transparent_edge_RGB_bleed", "DXT5_mipmaps"]
+  },
+  "directionConvention": {"front": "S", "rear": "N", "order": ["S", "SE", "E", "NE", "N", "NW", "W", "SW"]},
+  "audioReference": {"container": "WAV", "encoding": "signed_PCM16_little_endian", "sampleRate": 44100, "channels": 1},
+  "requiredAdapterWork": [
+    "Consume the Source Pack's explicit timestamped holds, including ping-pong and fractional final holds; existing --fps accepts only an integer.",
+    "Map common-canvas anchor and scale once into free-standing, attached and dropped geometry; retain current attachment until validated.",
+    "Convert slot audio, then validate DDS/NIF/WAV and compare against reference output.",
+    "Generate only the supported runtime payload and test it in GECK/FNV before claiming game readiness."
+  ],
+  "recordedWorkingBehavior": ["pursuit_and_attack", "audible_music", "foot_placement", "defeat_with_sound"],
+  "runtimePendingOrUntested": ["eight_direction_switching", "neutral_wandering", "pickup_deploy_condition_cycles", "menu_music_pause", "dropped_audio_following"],
+  "replacementConstraint": "One replacement character at a time; asset replacement retains existing plugin names, stats, AI and records.",
+  "evidence": ["work/geck-bridge/plan.md", "work/geck-bridge/projects/salvatore/salvatore.spec.json", "work/geck-bridge/projects/salvatore/V1_CHECKLIST.md", "work/geck-bridge/projects/salvatore/scripts/*.gek"]
+}

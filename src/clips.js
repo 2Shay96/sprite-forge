@@ -1,0 +1,15 @@
+SF.Clips = (() => {
+  const timingKeys=['sourceFps','playbackSpeedPercent','displayFps','playbackMode','rangeStart','rangeEnd'];
+  function initialize(p){p.clipFacing??={};p.preview??={};p.directions??={};p.extraClips??={};p.audio??={};p.stateClips??={};p.simulation??={seed:2026,roamRadius:180,moveSpeed:42,pauseMin:2,pauseMax:6,leashDistance:260};
+    Object.assign(p.settings,{directionMode:p.settings.directionMode||'billboard',previewDirection:p.settings.previewDirection||'S',generatedSideWidthPercent:p.settings.generatedSideWidthPercent??45,rearDarknessPercent:p.settings.rearDarknessPercent??85,mirrorDirections:p.settings.mirrorDirections??true});for(const clip of Object.values(p.extraClips))clip.canvas??=[...p.canvas];SF.Banks?.initialize(p);SF.Placement?.initialize(p);SF.Corrections?.initialize(p);SF.Playback?.initialize(p);return p;}
+  function get(p,id){return id&&id!==p.settings.clipId&&Object.hasOwn(p.extraClips||{},id) ? p.extraClips[id] : {frames:p.frames,directions:p.directions||{},timing:p.settings,canvas:p.canvas};}
+  const canvas=(p,id)=>get(p,id).canvas||p.canvas;
+  const ids=p=>[p.settings.clipId,...Object.keys(p.extraClips||{})];
+  const timing=(p,id)=>{const g=SF.Placement?.resolve(p,id);return {...p.settings,...get(p,id).timing,...(g?Object.fromEntries(SF.Placement.keys.map(k=>[k,g[k]])):{} )};};
+  const sequences=p=>ids(p).flatMap(id=>{const c=get(p,id);return[{clipId:id,direction:'S',frames:c.frames},...Object.entries(c.directions||{}).filter(([,v])=>v.kind==='imported').map(([direction,v])=>({clipId:id,direction,frames:v.frames}))];});
+  const allFrames=p=>sequences(p).flatMap(s=>s.frames);
+  function checkBudget(p,additional=[]){SF.Directions?.validateFacing(p);SF.Banks?.validate(p);if(p.frames.length){SF.Placement?.validate(p);SF.Corrections?.validate(p);SF.Playback?.validate(p);}if(SF.Banks&&SF.Banks.allTakes(p).reduce((n,a)=>n+a.buffer.length*a.buffer.numberOfChannels*4,0)>128*1024*1024)throw Error('Decoded audio exceeds the 128 MB project limit.');const frames=allFrames(p),blobs=[...frames.map(f=>f.blob),...(SF.Banks?SF.Banks.allTakes(p):Object.values(p.audio)).map(a=>a.blob),...[...new Set(frames.map(f=>f.origin).filter(Boolean))].map(o=>o.blob),...additional];if(blobs.reduce((n,b)=>n+b.size,0)>512*1024*1024)throw Error('The complete project is limited to 512 MB of original media.');if(frames.length>2000)throw Error('The complete project is limited to 2,000 imported image frames.');}
+  function rebalance(p){const frames=allFrames(p),side=Math.min(360,Math.max(64,Math.floor(Math.sqrt(16000000/Math.max(1,frames.length)))));
+    for(const f of frames){if(Math.max(f.proxy.width,f.proxy.height)<=side)continue;const c=document.createElement('canvas'),ratio=side/Math.max(f.proxy.width,f.proxy.height);c.width=Math.max(1,Math.round(f.proxy.width*ratio));c.height=Math.max(1,Math.round(f.proxy.height*ratio));c.getContext('2d').drawImage(f.proxy,0,0,c.width,c.height);f.proxy.close?.();f.proxy=c;}}
+  return {initialize,get,canvas,ids,timing,sequences,allFrames,checkBudget,rebalance,timingKeys};
+})();

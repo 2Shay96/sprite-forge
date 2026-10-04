@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# Large test evidence and local backups (kept on the Mac, not in git)
+evidence/
+_backup-0.6.2/
+
+# Build output (regenerate with: node build.mjs && node package.mjs)
+SpriteForge-Trial/
+SpriteForge-Trial.zip
+
+# Accidental duplicates
+assets/fonts/* copy*
+
+# Node / misc
+node_modules/
+*.log
+.env
