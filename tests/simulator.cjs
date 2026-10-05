@@ -1,5 +1,6 @@
+const Test=require('./config.cjs');
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
-const sandbox={SF:{}};vm.runInNewContext(fs.readFileSync('sprite-forge/src/simulator.js','utf8'),sandbox);const S=sandbox.SF.Simulator;
+const sandbox={SF:{}};vm.runInNewContext(fs.readFileSync(Test.projectPath('src/simulator.js'),'utf8'),sandbox);const S=sandbox.SF.Simulator;
 const config={seed:2026,roamRadius:180,moveSpeed:42,pauseMin:2,pauseMax:6,leashDistance:260};
 const run=(sim,seconds,keys={},sting=2,release=1.4)=>{for(let i=0;i<Math.round(seconds*60);i++)sim.step(1/60,keys,true,sting,release);};
 for(const seed of [0,2026,4294967295]){

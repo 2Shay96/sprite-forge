@@ -1,5 +1,6 @@
+const Test=require('./config.cjs');
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
-const sandbox={};vm.createContext(sandbox);vm.runInContext(fs.readFileSync('sprite-forge/src/timeline.js','utf8'),sandbox);const T=sandbox.SF.Timeline;
+const sandbox={};vm.createContext(sandbox);vm.runInContext(fs.readFileSync(Test.projectPath('src/timeline.js'),'utf8'),sandbox);const T=sandbox.SF.Timeline;
 const s={rangeStart:0,rangeEnd:3,sourceFps:4,displayFps:4,playbackSpeedPercent:100,playbackMode:'ping_pong'};
 assert.equal(T.duration(s),1.5);assert.deepEqual(Array.from(T.schedule(s).entries,x=>x.frame),[0,1,2,3,2,1]);
 for(let cycle=0;cycle<3;cycle++)for(let i=0;i<6;i++)assert.equal(T.at(s,cycle*1.5+i*.25+.001),[0,1,2,3,2,1][i]);

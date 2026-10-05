@@ -1,6 +1,6 @@
 # Sprite Forge Studio — plan to v1.0
 
-Updated: 5 October 2026. Status: Step 1 baseline documentation complete; GitHub checkpoint verified. Steps 2–21 remain pending.
+Updated: 5 October 2026. Status: Steps 1–2 complete. Portable Windows tests pass; Step 2 GitHub checkpoint verification pending. Steps 3–21 remain pending.
 
 ## 1. Product direction and authority
 
@@ -79,6 +79,21 @@ User instruction, 5 October 2026: GitHub is installed on this PC and Sprite Forg
 
 No commit or push was attempted while adding this planning instruction. The next implementation session establishes the repository connection and begins these checkpoints.
 
+### 4.2 Follow-ups recorded before Step 3 — 5 October 2026
+
+The user requested these issues be resolved or listed explicitly before continuing. This register is now part of the plan. Step 3 may recover the shell while later media/package checks remain open; it must not claim those checks passed. No Step 3 work has begun.
+
+| ID | Current finding | Resolution task and required evidence | Due / completion gate |
+| --- | --- | --- | --- |
+| GH-1 | Step 2 commit fc577f6 is local only; remote main was verified at 9b0f0dd. GitHub integration is available but installation/connection is unconfirmed; Desktop sign-in does not provide CLI credentials. | Install/connect GitHub to this Codex session, inspect its actual tools/permissions, and use its supported publish workflow. If local git push still needs CLI authentication, establish that separately. Push pending scoped commits to 2Shay96/sprite-forge main; verify remote refs contain them. Use connector/CLI rather than desktop control for this request. | Pending backup must stay visible until remote verification succeeds; do not describe Step 2 as remotely backed up meanwhile. |
+| MEDIA-1 | **Located:** Salvatore source root at C:\Users\Shadow\Desktop\VibeCoding\fnv\source\Salvatore. assets/salvatore_angle_sprites contains S/SE/E/NE/N/NW/W/SW, each with 70 PNGs, all 1080×1080 (560 frames total). assets/sounds contains res_sound_effect.mp3, defeated_sound_effect.mp3, salvatore_dead_loop.mp3 and salvatoremusic_16bit_48k.wav. | Set SPRITE_FORGE_SALVATORE to that root and SPRITE_FORGE_SALVATORE_DIRECTIONS to its assets/salvatore_angle_sprites folder for optional tests. Review old browser assertions before using them for current acceptance; run current real-media checks after workflow integration. Read source media only; never alter the mod, Godot project or installed game. Inventory is not import/export/listening acceptance. | Location dependency resolved. Browser workflow/codec/listening acceptance remains Steps 5 and 19. |
+| MEDIA-2 | Emet PNG sequence not located in the inspected workspace/Downloads. No SPRITE_FORGE_EMET source folder is configured. | Obtain the existing original folder path; configure SPRITE_FORGE_EMET; run emet-corrections on first/middle/last frames and preserve hashes. Follow with manual pose tuning using actual footage. Do not label a synthetic replacement as Emet acceptance. | Real Emet checks remain BLOCKED; resolve before the Emet portion of Steps 5/19 or record the unavailable input explicitly. |
+| MEDIA-3 | User's latest editable .spriteforge.zip and distinct real idle/attack/voice takes have not been identified. Historical Salvatore/evidence archives are available, but do not establish the latest authored project or idle dialogue. | Identify saved project/media paths; copy no source into Git; confirm archive provenance and roles. Save/reopen and exercise both attack targets/lifecycle; inspect PNGs and listen to exported WAVs. | Required inputs for Step 19 sign-off; missing inputs are a dependency, not a passed real-project test. |
+| MEDIA-4 | No representative original MP4/MOV/AVI/WebM or opaque cat footage located in inspected project/workspace/Downloads. | Acquire small distributable/supplied fixtures and record container, actual video/audio codecs, rotation, duration, frame/timestamp provenance and redistribution permission. Include portrait/VFR/silent/audio/truncated/large cases and ordinary opaque cat footage. | Decoder investigation Step 6 cannot pass without required MP4/MOV/AVI cases; end-to-end gates Steps 10/19. |
+| PACK-1 | Existing 0.6.2 Trial ZIP passes CRC and HTML-byte checks, but fails current ALPHA-HANDOFF.md equality. Read-only comparison confirms its handoff matches the working document before the added 5 October priorities section. This is stale documentation, not evidence of corrupt HTML. | Preserve baseline ZIP hash 85747568fc14d4004bc51c6615a122e66e10821761c5b08ab27ede5c286473db. After Steps 3–4 produce a verified rebuilt 0.7 workflow, run package.mjs without discarding the old baseline; rerun --package and compare packaged HTML/docs to exact tested inputs. Record the new ZIP/HTML hashes. Do not rebuild old sources now merely to hide the mismatch. | Package consistency remains FAIL until rerun passes; refresh after Step 4, before treating a Trial package as current. Fresh package/browser release acceptance still belongs to Steps 20–21. |
+
+Read-only media inventory on 5 October: all 560 PNG headers and source SHA-256 values inspected; aggregate ordered inventory hash 9f9c00600369be8c1b8b7f855ab2fdc03224124e2c9d0f482dade53ae3ea38d1. These source bytes were not exported, modified or committed. Searches do not establish absence from every disk/cloud location; unresolved inputs need a supplied path.
+
 ## 5. Implementation steps
 
 ### [x] Step 1 — Baseline and acceptance checklist
@@ -87,7 +102,7 @@ Confirm the project directory, reference hash, source versions, existing changes
 
 **Gate:** one authoritative working project and build reference; a release checklist with no ambiguous “latest” build; verified GitHub checkpoint (or an explicitly unresolved setup blocker); no application behaviour changes. A setup blocker must remain tracked until remote backup succeeds.
 
-### [ ] Step 2 — Portable Windows tests
+### [x] Step 2 — Portable Windows tests
 
 Replace hardcoded Mac runtime/media paths with explicit configuration and project-relative paths. Separate mandatory self-contained tests from external-media suites. Document dependency setup and one repeatable test entry point. Do not mark missing dependencies or fixtures as successful tests. Capture pre-existing failures before modifying the application.
 
@@ -261,4 +276,4 @@ This later work needs its own bounded plan after inspecting actual mod/runtime i
 
 ## 9. Immediate next action
 
-Step 1 baseline evidence is recorded in BASELINE-ACCEPTANCE.md and STATUS.md. Start **Step 2** using the preamble above. Complete Steps 2–5 to establish a rebuildable, tested foundation, then tackle the video decoder investigation before adding the remaining features.
+Step 1 baseline evidence is recorded in BASELINE-ACCEPTANCE.md; Step 2 portable tests and results are documented in tests/README.md and STATUS.md. Review section 4.2 for the recorded GitHub, media and Trial ZIP follow-ups before starting **Step 3** using the preamble above. Complete Steps 3–5 to establish a rebuildable, tested foundation, then tackle the video decoder investigation before adding the remaining features.

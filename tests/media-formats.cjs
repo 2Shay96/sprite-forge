@@ -1,12 +1,13 @@
+const Test=require('./config.cjs');
 // Native raster decoders and Canvas, not a browser UI acceptance test.
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path'),{webcrypto}=require('node:crypto'),{File}=require('node:buffer');
-const deps='/Users/seamuswulff/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/';
-const {createCanvas,loadImage}=require(deps+'@napi-rs/canvas'),sharp=require(deps+'sharp'),JSZip=require('../vendor/jszip.min.js');
+
+const {createCanvas,loadImage}=Test.dependency('@napi-rs/canvas'),sharp=Test.dependency('sharp'),JSZip=require('../vendor/jszip.min.js');
 const checks=[],record=(s)=>checks.push(s),surfaces=[];
 function canvas(){const c=createCanvas(1,1);c.toBlob=(cb,type='image/png')=>{try{cb(new Blob([c.toBuffer(type)],{type}));}catch{cb(null);}};surfaces.push(c);return c;}
 const document={createElement(type){if(type==='canvas')return canvas();if(type==='a')return {click(){}};throw Error(type);}};
 const sandbox={SF:{},Blob,File,crypto:webcrypto,TextDecoder,Uint8Array,ArrayBuffer,DataView,document,JSZip,URL,window:{},setTimeout:(fn,ms)=>ms===60000?0:setTimeout(fn,ms),createImageBitmap:async blob=>{const c=await loadImage(await sharp(Buffer.from(await blob.arrayBuffer())).png().toBuffer());c.close=()=>{};return c;}};
-vm.createContext(sandbox);for(const m of ['timeline','store','banks','media','clips','placement','corrections','directions','simulator','playback','pack'])vm.runInContext(fs.readFileSync(`sprite-forge/src/${m}.js`,'utf8'),sandbox);const {Media:M,Pack:P,Store:S,Clips:C}=sandbox.SF;
+vm.createContext(sandbox);for(const m of ['timeline','store','banks','media','clips','placement','corrections','directions','simulator','playback','pack'])vm.runInContext(fs.readFileSync(Test.projectPath(`src/${m}.js`),'utf8'),sandbox);const {Media:M,Pack:P,Store:S,Clips:C}=sandbox.SF;
 const sig={cancelled:false},progress=()=>{},file=(bytes,name,type='')=>new File([bytes],name,{type});
 (async()=>{
  const c=canvas();c.width=9;c.height=13;const ctx=c.getContext('2d');ctx.fillStyle='#e7bc72';ctx.fillRect(2,3,4,8);const input=c.toBuffer('image/png'),base=sharp(input);
@@ -28,6 +29,5 @@ const sig={cancelled:false},progress=()=>{},file=(bytes,name,type='')=>new File(
  sandbox.ImageDecoder=class {static async isTypeSupported(type){return type==='image/gif';}tracks={ready:Promise.resolve(),selectedTrack:{frameCount:2}};completed=Promise.resolve();async decode({frameIndex}){const image=await loadImage(pages[frameIndex]);image.displayWidth=3;image.displayHeight=4;image.duration=[100000,250000][frameIndex];image.close=()=>closed++;return {image};}close(){closed++;}};
  const extracted=await M.importFiles([file(anim,'anim_1.gif')],sig,progress);assert.equal(extracted.frames.length,2);assert.equal(extracted.frames[0].transparent,true);assert.equal(extracted.frames[1].sourceDurationUs,250000);assert.equal(closed,3);assert.equal(await M.hash(extracted.frames[0].origin.blob),await M.hash(anim.buffer.slice(anim.byteOffset,anim.byteOffset+anim.byteLength)));
  const ap=C.initialize({...extracted,settings:{...S.defaults(),rangeEnd:1,anchorX:1,anchorY:4,directionMode:'billboard'}}),az=await P.save(ap,sig,progress);delete sandbox.ImageDecoder;const ar=await P.reopen(az,sig,progress);assert.equal(ar.frames[1].sourceDurationUs,250000);assert.equal(await M.hash(ar.frames[0].origin.blob),await M.hash(ap.frames[0].origin.blob));assert.equal(ar.frames[0].origin,ar.frames[1].origin);record('Animated extraction orchestration, alpha, resource cleanup, source delays and original GIF save/reopen (mock ImageDecoder; real GIF/PNG bytes)');
- for(const old of ['legacy-v1','fixture','salvatore_front']){const blob=new Blob([fs.readFileSync(`sprite-forge/evidence/${old}.spriteforge.zip`)]);const oldP=await P.reopen(blob,sig,progress);assert.equal(oldP.settings.directionMode,'billboard');if(old==='salvatore_front'){assert.equal(oldP.frames.length,70);assert.deepEqual(Array.from(oldP.canvas),[1080,1080]);assert.ok(oldP.frames.every(f=>f.transparent&&f.bounds[3]<1080));}}record('Legacy schema 1/2 projects and actual 70-frame Salvatore front reopen with alpha intact');
- fs.writeFileSync('sprite-forge/evidence/media-0.6.0-checks.json',JSON.stringify({version:'0.6.0',checks,browserAcceptance:false,note:'Native raster/Canvas checks plus mock ImageDecoder/Web Audio are not fresh browser interaction tests.'},null,2));console.log(checks.join('\n'));
+ fs.writeFileSync(Test.outputPath('media-0.6.0-checks.json'),JSON.stringify({version:'0.6.2',checks,browserAcceptance:false,note:'Native raster/Canvas checks plus mock ImageDecoder/Web Audio are not fresh browser interaction tests.'},null,2));console.log(checks.join('\n'));
 })().catch(e=>{console.error(e);process.exit(1);});
