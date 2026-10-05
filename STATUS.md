@@ -4,7 +4,7 @@ Updated: 5 October 2026.
 
 ## Current task
 
-Step 2 tests complete. Requested GitHub connector publishing and explicit pre-Step 3 media/package register are complete; checkpoint content is verified on GitHub. Original local commits still await a main-branch push. Steps 3–21 remain pending. Application sources, HTML, supplied preview and packages are unchanged; no rebuild or GECK/mod work occurred.
+Step 2 tests complete. Requested GitHub publishing and explicit pre-Step 3 media/package register are complete; original local commits are pushed and verified on public GitHub main. Steps 3–21 remain pending. Application sources, HTML, supplied preview and packages are unchanged; no rebuild or GECK/mod work occurred.
 
 ## Changes
 
@@ -37,12 +37,12 @@ Exact tested baseline: SpriteForge.html 0.6.2, SHA-256 93ed65579cf1afb7d542f9975
 
 ## GitHub checkpoint
 
-Confirmed repository https://github.com/2Shay96/sprite-forge; local main tracks origin/main. GitHub connector is installed, authenticated as 2Shay96 and has verified write access. Published a separate checkpoint through its Git database API without desktop control or rewriting existing history. Fresh git fetch verified checkpoint/windows-step2-media-2026-10-05 at 587d477b00f230867c229861018b079406a7557d; its tree 02ce596b2230cf3b19a2c3cc1f921596d198d27b exactly matches local 8131f08ae6753e53537f981c0b4c2c4fcf8325de, including Step 2 commit fc577f6e155c9ae88e2c46ae866ccebd69f8f101. This receipt update will also be published to the checkpoint branch and verified by tree equality.
+Confirmed repository https://github.com/2Shay96/sprite-forge; local main tracks origin/main. GitHub connector is authenticated as 2Shay96 with write access and confirms public visibility, as requested. Authenticated git push succeeded: main advanced from 9b0f0dd to 67d469de4708ebd55ded414ca9ec55baf2ae2e53, including original Step 2 fc577f6e155c9ae88e2c46ae866ccebd69f8f101 and media/package register 8131f08ae6753e53537f981c0b4c2c4fcf8325de. Fresh fetch verified matching local/remote SHA and 0 ahead / 0 behind. This receipt commit is also pushed and verified before session completion; it need not contain its own SHA.
 
-Remote main remains 9b0f0dd2742facfd2faece107bcadaa3a212ef1a. Connector create_commit has no author/date metadata parameters, so it creates new commit SHAs rather than uploading the original local commits. Content backup is complete; the original local history remains intact and its main-branch push is still pending CLI authentication. Do not claim main is synchronized. No force push, merge or history rewrite occurred.
+Earlier connector content backup remains on checkpoint/windows-step2-media-2026-10-05 at 90ddca5c7cb7c1ba4e481b4d2bff8154191d8547, with tree equality verified against local 67d469d. CLI authentication now works; the original main-branch history backup is complete. No force push, merge or history rewrite occurred.
 
 Preserved unrelated pre-existing ALPHA-HANDOFF.md modification and untracked CLOUD-HANDOFF.md, FILE-MANIFEST.json, START-HERE-WINDOWS.md and reference/. Generated test output stays ignored. Checkpoint scope is tests, package.json, README, plan and status only.
 
 ## Next action
 
-When Git CLI authentication is available, push the preserved original local commits to main and verify ancestry. The requested media and Trial ZIP register is complete in plan.md section 4.2; Step 3 has not begun and awaits the user's selection.
+Await the user's selection of Step 3. The requested media and Trial ZIP register is complete in plan.md section 4.2, and GitHub backup is verified; Step 3 has not begun.
