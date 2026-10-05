@@ -1,12 +1,21 @@
 # Sprite Forge Studio status
 
-Updated: 5 October 2026.
+Updated: 6 October 2026.
 
 ## Current task
 
-Step 3 shell/assets recovery complete. The build now reproduces the supplied 0.7 markup, CSS and offline fonts using the existing 17 behavior modules. Steps 4–21 remain pending; new workflow bindings are not integrated. Supplied preview, known-good baseline and Trial package are preserved. No GECK/mod work occurred.
+Step 4 workflow integration complete. Supplied 0.7 appearance and all 19 workflow modules are maintained in sources; refreshed Trial package consistency passes. Steps 5–21 remain pending. Real-media/listening acceptance is not established by the synthetic integration fixtures. Supplied preview, known-good baseline and old Trial package are preserved. No GECK/mod work occurred.
 
-## Step 3 changes and evidence
+## Step 4 changes and evidence
+
+- Added src/steps.js and src/roster.js from the authoritative preview; reviewed/integrated app.js, studio.js and action-controls.js hooks and wording. Initial recovery rebuilt the supplied preview byte for byte at its recorded hash. Corrected inherited pack.js export tool metadata from 0.6.2 to 0.7.0, matching the UI; project schema 7 / Source Pack schema 6 and core timing/media/placement/correction/audio/playback behavior contracts are unchanged.
+- Focused real-browser test uses existing numbered PNG and stereo WAV fixtures through real controls. Checks main/extra imports, explicit state chips versus auto-fill, separate player/enemy attack links and once-return rules, cancelled/main replacement preserving extras, animation chips and independent timing, Next/compass/segmented controls, cue selection/import and summaries, field-state/programmatic routes, FX, and valid project/Source Pack downloads. Reopen preserves authored roster, state rules, media and timing. Fresh test-kit page verifies accepted drift/action kits route to Frame fixes/Field test. No user project tab was refreshed.
+- Final combined Chrome command node tests/run.cjs --browser --package: 20/20 PASS (16 mandatory plus smoke, shell, workflow, release), exit 0. Report: evidence/test-runs/2026-10-05T23-52-28-114Z-16528/results.json. Chrome 154.0.8037.98. Edge 154.0.4258.53 smoke/shell/workflow all PASS: evidence/test-runs/2026-10-05T23-53-00-730Z-18300/results.json. Both browser runs are offline with no page exceptions or HTTP requests; static shell comparisons retain the supplied appearance at three widths. UTC evidence timestamps fall on 5 October; the session date in Europe/London is 6 October.
+- Added code LICENSE to the refreshed Trial alongside JSZip and both font licenses/notices, then reran release integrity: PASS, evidence/test-runs/2026-10-05T23-55-11-456Z-19096/results.json. ZIP CRC, ZIP/loose HTML, current documents and licenses match exact source inputs. Package consistency register PACK-1 is resolved; full fresh-release/browser acceptance remains later-plan work.
+- Repeated node build.mjs produces 1,803,375-byte HTML, SHA-256 b626c94cce900b6f7df260626c7616b4bbbfce6d5ff60138aa36bdfe374b5556. Current Trial ZIP: 1,214,656 bytes / 14 files, SHA-256 f3e0528230579c49ef221324a88e3f9126a6c2b4b5c7232e005d35291913724c. HTML/ZIP are local generated artifacts excluded from the scoped source commit; rebuild and package after fresh checkout. Documentation/Trial guide reflects the five-step workflow.
+- Preserved old Trial ZIP and loose folder under _backup-0.6.2/trial-before-step4-2026-10-06. Verified original ZIP hash 85747568fc14d4004bc51c6615a122e66e10821761c5b08ab27ede5c286473db. Supplied preview and known-good _backup-0.6.2/SpriteForge.html retain their recorded hashes. No source media or mod/game assets were copied or changed.
+
+## Preserved Step 3 changes and evidence
 
 - Recovered exact supplied shell into src/index.html; reset into src/style.css and terminal theme into src/theme.css. Added src/fonts.css with local asset references; build.mjs embeds Share Tech Mono TTF and three exact supplied Barlow WOFF payloads. Embedded SVG textures, JSZip and Sunny reference match the preview. Font notices/licenses accompany the source assets.
 - No behavior module changed. Build order remains 17 modules; steps/roster and preview changes to app/studio/action-controls await Step 4. New Next/Tune routing, roster/coverage, summaries, animation chips, segmented controls, FX and duplicate actions are not claimed functional. Schema 7 and Source Pack 6 remain unchanged.
@@ -42,17 +51,17 @@ Exact Step 2 baseline: SpriteForge.html 0.6.2, SHA-256 93ed65579cf1afb7d542f9975
 ## Tracked limitations
 
 - Salvatore original media located at C:\Users\Shadow\Desktop\VibeCoding\fnv\source\Salvatore: eight directions × 70 PNGs, all 1080²; four referenced MP3/WAV files present. Set SPRITE_FORGE_SALVATORE / SPRITE_FORGE_SALVATORE_DIRECTIONS explicitly. Read-only inventory of all 560 PNG headers/hashes; no import/export/listening acceptance claimed. Emet, latest user project, distinct idle/attack/voice and video inputs remain unresolved in inspected locations; see plan.md section 4.2. Older browser/milestone2 scripts still need assertion review before Step 5.
-- Optional release packaging FAILS on the pre-existing packaged ALPHA-HANDOFF.md mismatch. Preserve the old Trial ZIP; reconcile it after source integration. Missing packaged artifacts on a fresh checkout are BLOCKED; default suites require no generated package or historical archives.
+- Trial consistency now passes after Step 4 refresh; old package is preserved. Missing packaged artifacts on a fresh checkout are BLOCKED until generated; default suites require no Trial package or historical archives. Full fresh-package release acceptance remains Steps 20–21.
 - Full browser workflow, listening, latest authored project, real idle/attack recordings and required video fixture acceptance remain outstanding later-plan work.
 
 ## GitHub checkpoint
 
-Confirmed public repository https://github.com/2Shay96/sprite-forge; main tracks origin/main and CLI authentication works. Last verified remote checkpoint before Step 3 is cdb4d63498b3a1195c0effcc8bbf73a66f773ef5, including original Step 2 and media/package register commits; fresh starting fetch showed 0 ahead / 0 behind. Scoped Step 3 source/tests/docs checkpoint is pushed and remote ancestry verified before session completion; it need not contain its own SHA.
+Confirmed public repository https://github.com/2Shay96/sprite-forge; main tracks origin/main and CLI authentication works. Last verified remote checkpoint before Step 4 is 01dad016130d078dfa24db1f9776c9d4fa23e4d5; fresh starting fetch showed 0 ahead / 0 behind. Scoped Step 4 source/tests/docs/package-script checkpoint is pushed and remote ancestry verified before session completion; it need not contain its own SHA.
 
 Earlier connector content backup remains on checkpoint/windows-step2-media-2026-10-05 at 90ddca5c7cb7c1ba4e481b4d2bff8154191d8547, with tree equality verified against local 67d469d. CLI authentication now works; the original main-branch history backup is complete. No force push, merge or history rewrite occurred.
 
-Preserved unrelated pre-existing ALPHA-HANDOFF.md modification and untracked CLOUD-HANDOFF.md, FILE-MANIFEST.json, START-HERE-WINDOWS.md and reference/. Generated test output stays ignored. Step 3 checkpoint scope is shell/font sources/assets, builder, meaningful shell/bundle/smoke checks and documentation. Generated SpriteForge.html remains a deliberate local modification outside this commit; no Trial package is refreshed.
+Preserved unrelated pre-existing ALPHA-HANDOFF.md modification and untracked CLOUD-HANDOFF.md, FILE-MANIFEST.json, START-HERE-WINDOWS.md and reference/. The Trial includes the current working handoff bytes, but that existing modification is not staged. Generated test output and packages stay ignored. Step 4 checkpoint scope is workflow sources, builder/package scripts, meaningful integration/package tests, license and documentation. Generated SpriteForge.html remains a deliberate local modification outside this commit.
 
 ## Next action
 
-Await the user's selection of Step 4: integrate the preserved preview's steps/roster and reviewed app/studio/action-control changes. Media and Trial ZIP gates remain explicit in plan.md section 4.2; no Step 4 work has begun.
+Await the user's selection of Step 5: full Windows browser/real-media and listening acceptance. Confirm required original inputs from plan.md section 4.2 before claiming their checks pass. No Step 5 work has begun.

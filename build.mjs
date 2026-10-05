@@ -8,7 +8,7 @@ const fonts=read('src/fonts.css').replace(/url\(\.\.\/(assets\/fonts\/[^()]+)\)/
   const type=file.endsWith('.ttf')?'ttf':'woff';
   return `url(data:font/${type};base64,${fs.readFileSync(path.join(root,file)).toString('base64')})`;
 });
-const modules=['timeline','store','banks','media','clips','placement','corrections','directions','audio','simulator','playback','renderer','pack','app','studio','keyer','action-controls'];
+const modules=['timeline','store','banks','media','clips','placement','corrections','directions','audio','simulator','playback','renderer','pack','app','studio','keyer','action-controls','steps','roster'];
 const app=modules.map(name=>`\n/* MODULE: ${name} */\n${read('src/'+name+'.js')}`).join('\n');
 const referenceAsset=fs.readFileSync(path.join(root,'assets/sunny-smiles-reference.png')).toString('base64');
 const assets=`globalThis.SF=globalThis.SF||{};SF.Assets={sunny:'data:image/png;base64,${referenceAsset}'};`;

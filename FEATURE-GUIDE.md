@@ -1,12 +1,14 @@
 # Sprite Forge — feature walkthrough
 
-Start with **Load test frames → Use this sequence → Play**, or import your own image animation. This guide describes Studio 0.6.2. Everything stays on your computer.
+Start with **Test kits → Numbered frames → Use this sequence → Play**, or import your main animation in **01 Animations**. This guide describes Studio 0.7.0. Everything stays on your computer.
+
+The five workflow steps are **Animations → Tune → Sound → Field test → Export**. Tune contains Size & ground, Directions, Timing and Frame fixes. The sections below explain the underlying controls. Video import remains a later planned feature.
 
 ## Main clip and the clip picker
 
 A **clip** is one ordered sequence of animation frames. Its Clip ID (for example, `dance`) is an internal export name, not a command to make the character dance. **Main clip** means it is the default animation for states that have no specific clip assigned. The older label was “dance · base”.
 
-For example, you can import a second clip called `idle`, then assign it to Neutral idle in States & test. Hostile, defeated and other unassigned states continue using `dance`. Extra clips have independent timing and native canvases. They inherit main grounding/size by default, or use their own placement override. The preview says **Main clip**. Its dropdown only appears when a second clip exists. Choose a clip there, then change its timing in Animation. A project holds one character with multiple animation clips; opening another project replaces it. Separate browser tabs can hold separate projects, and each tab must be saved independently.
+For example, tick Idle in Animations, choose its name and state chips, then import it. Selected state chips create explicit links; Auto-fill updates automatic links while preserving your choices. Coverage lists all ten states, including separate Attack player and Attack enemy assignments. Other unassigned states fall back to `dance`. Extra clips retain independent timing and native canvases and inherit main grounding/size unless overridden. Select an animation chip above the preview, then edit it in Tune. Next walks through the four Tune panels and then the next animation. Replacing main frames preserves extra clips; cancelling review keeps the current frames. Opening another project replaces it. Separate browser tabs must each be saved independently.
 
 ## 1. Import frames
 

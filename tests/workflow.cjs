@@ -1,0 +1,95 @@
+// Focused Step 4 integration through real offline browser controls and downloads.
+const Test=require('./config.cjs'),assert=require('node:assert/strict'),fs=require('node:fs'),crypto=require('node:crypto'),JSZip=require('../vendor/jszip.min.js');
+const {chromium}=Test.dependency('playwright');
+const frames=[1,2,3,10].map(i=>Test.projectPath('fixtures','numbered',`frame_${i}.png`));
+const hash=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
+(async()=>{const browser=await chromium.launch(Test.browserOptions());try{
+ const context=await browser.newContext({offline:true,acceptDownloads:true,reducedMotion:'reduce',viewport:{width:1440,height:1050}}),page=await context.newPage(),errors=[],remote=[],checks=[];
+ page.on('pageerror',e=>errors.push(e.message));context.on('request',r=>{if(/^https?:/.test(r.url()))remote.push(r.url());});
+ const ok=message=>checks.push(message);
+ const settle=()=>page.waitForFunction(()=>!SF.App.busy);
+ const tab=async name=>{await page.click(`[data-tab="${name}"]`);await page.waitForFunction(n=>SF.Steps.tab===n&&document.body.dataset.tab===n,name);};
+ const upload=async(button,files)=>{const [chooser]=await Promise.all([page.waitForEvent('filechooser'),button.click()]);await chooser.setFiles(files);await page.waitForSelector('#import-dialog[open]');};
+ const accept=async()=>{await page.click('#accept');await page.waitForSelector('#import-dialog[open]',{state:'detached'});await settle();};
+ const row=name=>page.locator('#roster-rows .roster-row').filter({has:page.getByText(name,{exact:true})});
+ const stateRow=name=>page.locator('#coverage .cov-row').filter({has:page.locator('.cov-state',{hasText:new RegExp('^'+name+'$')})});
+ const snapshot=()=>page.evaluate(()=>{const p=SF.Store.project;return {main:p.frames.map(f=>f.sha256),clips:Object.fromEntries(Object.entries(p.extraClips).map(([id,c])=>[id,c.frames.map(f=>f.sha256)])),stateClips:p.stateClips,statePlayback:p.statePlayback,roster:p.preview.roster,timing:p.extraClips.idle?.timing,audio:p.audio.neutral_quips?.takes.map(t=>({id:t.id,sha256:t.sha256}))};});
+ await page.goto(Test.htmlUrl);await page.waitForFunction(()=>SF.Steps&&SF.Roster&&document.querySelectorAll('#roster-rows .roster-row').length>0);
+ await upload(page.locator('#import'),frames);assert.match(await page.locator('#review-context').innerText(),/MAIN/);await accept();
+ await page.waitForFunction(()=>document.body.dataset.tab==='import'&&SF.Store.project.frames.length===4);
+ const originalMain=await page.evaluate(()=>SF.Store.project.frames.map(f=>f.sha256));
+ assert.equal(await page.locator('#coverage select').count(),10);assert.equal(await page.evaluate(()=>Object.keys(SF.Store.project.stateClips).length),10);
+ await stateRow('Neutral idle').locator('select').selectOption('dance');
+ assert.equal(await page.evaluate(()=>SF.Store.project.preview.roster.auto.neutral_idle),undefined);
+ ok('Main import stays on Animations, initializes ten states; explicit state choice clears auto-fill ownership');
+
+ await row('Idle').locator('input[type=checkbox]').first().check();
+ await row('Idle').getByRole('button',{name:'Neutral idle',exact:true}).click();
+ await upload(row('Idle').getByRole('button',{name:'Import idle frames',exact:true}),frames);assert.match(await page.locator('#review-context').innerText(),/IDLE/);await accept();
+ await row('Attack').locator('input[type=checkbox]').first().check();
+ await upload(row('Attack').getByRole('button',{name:'Import attack frames',exact:true}),frames);await accept();
+ let result=await snapshot();assert.deepEqual(result.main,originalMain);assert.deepEqual(Object.keys(result.clips),['idle','attack']);
+ assert.equal(result.stateClips.neutral_idle,'dance');assert.equal(result.stateClips.hostile_attack,'attack');assert.equal(result.stateClips.companion_combat,'attack');
+ assert.equal(result.statePlayback.hostile_attack.policy,'once_return');assert.equal(result.statePlayback.companion_combat.policy,'once_return');
+ await stateRow('Attack enemy').locator('select').selectOption('idle');await page.click('#coverage-fill');
+ result=await snapshot();assert.equal(result.stateClips.hostile_attack,'attack');assert.equal(result.stateClips.companion_combat,'idle');assert.equal(result.stateClips.neutral_idle,'dance');
+ ok('Roster imports preserve main; attack targets remain separate; auto-fill preserves explicit choices and action rules');
+
+ await upload(page.locator('#import'),frames.slice(0,2));await page.click('#discard');await settle();assert.deepEqual((await snapshot()).main,originalMain);
+ await upload(page.locator('#import'),frames.slice(0,2));await accept();result=await snapshot();assert.equal(result.main.length,2);assert.equal(result.clips.idle.length,4);assert.equal(result.clips.attack.length,4);
+ assert.equal(await page.evaluate(()=>SF.Roster.pending),null);
+ ok('Cancelled main replacement leaves frames intact; accepted replacement retains extras and clears pending routing');
+
+ await page.click('[data-next="tune"]');await page.waitForFunction(()=>document.body.dataset.tab==='ground');
+ await page.click('#clip-chips [data-clip="idle"]');assert.equal(await page.evaluate(()=>SF.Studio.clipId),'idle');
+ await page.click('[data-panel="ground"] [data-next]');await page.waitForFunction(()=>document.body.dataset.tab==='directions');
+ await page.click('[data-for="source-facing"] [data-value="left"]');assert.equal(await page.evaluate(()=>SF.Directions.sourceFacing(SF.Store.project,'idle')),'left');
+ await page.click('#direction-picker [data-direction="NE"]');assert.equal(await page.locator('#direction-import').inputValue(),'NE');assert.match(await page.locator('#import-direction').textContent(),/Upload NE/);
+ await page.click('[data-panel="directions"] [data-next]');await page.waitForFunction(()=>document.body.dataset.tab==='animation');
+ await page.click('[data-for="playbackMode"] [data-value="ping_pong"]');
+ await page.locator('#sourceFps').fill('12');await page.locator('#sourceFps').press('Tab');
+ assert.equal(await page.evaluate(()=>SF.Store.project.extraClips.idle.timing.sourceFps),12);assert.equal(await page.evaluate(()=>SF.Store.project.settings.sourceFps),24);
+ assert.equal(await page.evaluate(()=>SF.Store.project.extraClips.idle.timing.playbackMode),'ping_pong');
+ await page.click('[data-panel="animation"] [data-next]');await page.waitForFunction(()=>document.body.dataset.tab==='fixes');
+ assert.match(await page.locator('[data-panel="fixes"] [data-next]').textContent(),/attack/);
+ await page.click('[data-panel="fixes"] [data-next]');await page.waitForFunction(()=>document.body.dataset.tab==='ground'&&SF.Studio.clipId==='attack');
+ await tab('audio');
+ const cueLabel=await page.evaluate(()=>SF.Banks.labels.neutral_quips);
+ await page.locator('#cue-list .cue').filter({has:page.getByText(cueLabel,{exact:true})}).click();assert.equal(await page.locator('#audio-slot').inputValue(),'neutral_quips');
+ await uploadAudio();
+ async function uploadAudio(){const [chooser]=await Promise.all([page.waitForEvent('filechooser'),page.click('#import-audio')]);await chooser.setFiles(Test.projectPath('fixtures','stereo-tone-48k.wav'));await page.waitForFunction(()=>!SF.App.busy&&SF.Store.project.audio.neutral_quips?.takes.length===1);}
+ await page.click('[data-for="bank-mode"] [data-value="periodic"]');assert.equal(await page.evaluate(()=>SF.Store.project.audio.neutral_quips.settings.mode),'periodic');
+ assert.match(await page.locator('#sum-sound').textContent(),/1 cue/);
+ ok('Next routing and clip chips select independent timing; segments/compass drive native controls; sound cue selection/import updates summaries');
+
+ await page.click('[data-panel="audio"] [data-next]');await page.waitForFunction(()=>document.body.dataset.tab==='states');
+ await page.locator('#state-board .board-row').filter({has:page.locator('.b-state',{hasText:/^Attack player$/})}).click();assert.equal(await page.evaluate(()=>SF.Studio.bindingState),'hostile_attack');
+ await page.locator('#state-clip').selectOption('idle');await tab('import');await page.click('#coverage-fill');assert.equal((await snapshot()).stateClips.hostile_attack,'idle');
+ await page.evaluate(()=>SF.App.tab('audio'));await page.waitForFunction(()=>document.body.dataset.tab==='audio'&&document.body.dataset.step==='sound');
+ await page.click('#fx-toggle');assert.equal(await page.locator('#fx-toggle').getAttribute('aria-pressed'),'false');assert.ok(await page.locator('body').evaluate(b=>b.classList.contains('fx-off')));
+ await tab('pack');assert.ok(await page.locator('#preflight li').count()>=6);
+ const beforeSave=await snapshot(),[saved]=await Promise.all([page.waitForEvent('download'),page.click('#pack-save')]);
+ const projectPath=Test.outputPath('workflow.spriteforge.zip');await saved.saveAs(projectPath);await settle();
+ const archive=await JSZip.loadAsync(fs.readFileSync(projectPath),{checkCRC32:true}),data=JSON.parse(await archive.file('project.json').async('string'));
+ assert.equal(data.schemaVersion,7);assert.equal(data.toolVersion,'0.7.0');assert.deepEqual(data.preview.roster,beforeSave.roster);assert.deepEqual(data.stateClips,beforeSave.stateClips);
+ await page.locator('#project-file').setInputFiles(projectPath);await page.waitForFunction(()=>!SF.App.busy&&!SF.Store.dirty&&document.querySelector('#status').textContent.includes('reopened'));
+ assert.deepEqual(await snapshot(),beforeSave);
+ const [exported]=await Promise.all([page.waitForEvent('download'),page.click('#pack-export')]);const packPath=Test.outputPath('workflow-source-pack.zip');await exported.saveAs(packPath);await settle();
+ const pack=await JSZip.loadAsync(fs.readFileSync(packPath),{checkCRC32:true}),manifestFile=Object.keys(pack.files).find(n=>n.endsWith('/manifest.json')),manifest=JSON.parse(await pack.file(manifestFile).async('string'));
+ assert.equal(manifest.schemaVersion,6);assert.equal(manifest.tool.version,'0.7.0');assert.deepEqual(Object.keys(manifest.clips).sort(),['attack','dance','idle']);
+ assert.ok(Object.keys(pack.files).some(n=>n.endsWith('.wav')));assert.ok(Object.keys(pack.files).some(n=>n.endsWith('.png')));
+ ok('Field board/programmatic routing and FX work; duplicate save/export buttons download valid schema 7 project and schema 6 Source Pack; authored roster/state/media survive reopen');
+ await page.screenshot({path:Test.outputPath('workflow-export.png'),fullPage:true});assert.deepEqual(errors,[]);assert.deepEqual(remote,[]);
+ // Separate fresh page exercises test-kit/programmatic routes without replacing the authored test project.
+ const kit=await context.newPage();kit.on('pageerror',e=>errors.push(e.message));await kit.goto(Test.htmlUrl);await kit.click('#kits-menu > summary');await kit.click('#correction-demo');
+ await kit.waitForSelector('#import-dialog[open]');assert.equal(await kit.locator('#kits-menu').evaluate(n=>n.open),false);await kit.click('#accept');
+ await kit.waitForFunction(()=>!SF.App.busy&&document.body.dataset.tab==='fixes');assert.equal(await kit.evaluate(()=>SF.Store.project.frames.length),12);
+ await kit.click('#kits-menu > summary');await kit.click('#action-demo');await kit.waitForSelector('#import-dialog[open]');await kit.click('#accept');
+ await kit.waitForFunction(()=>!SF.App.busy&&document.body.dataset.tab==='states');
+ assert.equal(await kit.evaluate(()=>SF.Store.project.statePlayback.hostile_attack.policy),'once_return');
+ assert.equal(await kit.evaluate(()=>SF.Store.project.statePlayback.companion_combat.policy),'once_return');
+ await kit.close();ok('Test kits close their menu and route accepted drift/action fixtures to Frame fixes and Field test');
+ assert.deepEqual(errors,[]);assert.deepEqual(remote,[]);
+ const report={browser:await browser.version(),offline:true,checks,errors,remoteRequests:remote,htmlSha256:hash(fs.readFileSync(Test.projectPath('SpriteForge.html'))),projectSha256:hash(fs.readFileSync(projectPath)),sourcePackSha256:hash(fs.readFileSync(packPath)),syntheticFixtures:true,fullRealMediaAcceptance:false,humanListening:false};
+ fs.writeFileSync(Test.outputPath('workflow-browser.json'),JSON.stringify(report,null,2)+'\n');console.log('PASS offline 0.7 workflow '+report.browser+'; '+checks.length+' integration groups');
+}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

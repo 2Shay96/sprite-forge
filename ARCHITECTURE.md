@@ -1,8 +1,8 @@
-# Architecture and data contracts — 0.7 shell / 0.6.2 behavior
+# Architecture and data contracts — Studio 0.7.0
 
 ## Offline bundle
 
-`build.mjs` injects the supplied 0.7 shell's local fonts/reset/theme, vendored JSZip, embedded Sunny reference and seventeen unchanged ordered behavior modules into `src/index.html`. `src/fonts.css` references local TTF/WOFF assets; the builder embeds their exact bytes as data URLs. CSS textures remain embedded SVG data URLs. CSP disallows connections and permits data fonts and local blob/data media. The Step 3 intermediate HTML is about 1.77 MB, excluding user media. Building needs Node only. The preview's `steps`/`roster` modules and three changed behavior modules remain for Step 4; the recovered shell alone does not provide their new workflow bindings. Plain JavaScript and explicit `SF` namespaces keep rebuilding dependency-free; target adapters remain separate from authoring.
+`build.mjs` injects the supplied 0.7 shell's local fonts/reset/theme, vendored JSZip, embedded Sunny reference and nineteen ordered modules into `src/index.html`. `src/fonts.css` references local TTF/WOFF assets; the builder embeds their exact bytes as data URLs. CSS textures remain embedded SVG data URLs. CSP disallows connections and permits data fonts and local blob/data media. The maintained HTML is about 1.80 MB, excluding user media. Building needs Node only. Preview workflow modules and reviewed app/studio/action-control hooks are integrated; exported tool metadata is 0.7.0 independently of schema versions. Plain JavaScript and explicit `SF` namespaces keep rebuilding dependency-free; target adapters remain separate from authoring.
 
 | Module | Responsibility |
 | --- | --- |
@@ -23,6 +23,10 @@
 | `pack.js` | Project v1/v2/v3/v4/v5/v6/v7 migration, hashes/path/archive validation, source PNG/WAV/schedules/manifest ZIP. |
 | `app.js` | UI, staged imports, timing/transport, progress/cancel, shared animation clock. |
 | `studio.js` | Direction/audio/clip/gallery/encounter controls, fixed-step accumulator and keyboard interaction. |
+| `steps.js` | Five-step routing, native-control proxies, animation chips, Tune progression, test-kit routes, menus and viewer FX preference. |
+| `roster.js` | Animation checklist/import context, automatic versus explicit state links, coverage, cue/state lists, export preflight and summaries. |
+
+Roster preferences live in the existing project.preview.roster bag; links and playback rules use store.commitPlayback. Import review is authoritative: cancelling does not replace frames. Extra import keeps main, while main replacement keeps extras. Preview FX is localStorage viewer state and is not written to authored project settings. Full real-media/listening validation remains separate from focused synthetic workflow checks.
 
 ## Project archive v7
 

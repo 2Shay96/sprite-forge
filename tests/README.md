@@ -26,9 +26,9 @@ This environment value is machine-specific setup, never a baked-in fallback. Wit
 | Command / group | Evidence |
 | --- | --- |
 | Default | Pure timing/reference/simulator/playback/bank scheduler/audio clock; native placement/corrections/PNG/archive/media; mocked DOM controls; source-facing; source/bundle syntax and bindings |
-| `--browser` | Fresh isolated offline smoke plus shell checks: existing startup/demo/transport; 230 baseline control contracts; four embedded fonts; reference/rebuilt shell screenshot equality at 1440/1000/720px. Shell comparison disables scripts deliberately; not full workflow sign-off or listening |
+| `--browser` | Fresh isolated offline smoke, shell and workflow: startup/demo/transport; 230 baseline control contracts; four offline fonts; shell screenshot equality at three widths; real-control roster/routing/state/sound/clip/save/reopen/export checks with synthetic PNG/WAV fixtures. Shell comparison disables scripts deliberately; not full real-media sign-off or listening |
 | `--external` | Historical archive reopen, three real Emet sample frames, full Salvatore eight-direction browser workflow; missing configured inputs are BLOCKED |
-| `--package` | Existing Trial ZIP CRC/HTML/doc consistency; never regenerates stale packages |
+| `--package` | Trial ZIP CRC, HTML and documentation/code/font license consistency in ZIP and loose folder; never regenerates stale packages |
 | `--legacy-browser` | Older browser.cjs and milestone2.cjs workflows with original assertions. They contain pre-bank/schema assumptions and need review before Step 5; not release acceptance |
 | `--suite NAME` | Only named suites (repeat flag to select several); same preflight/results policy |
 

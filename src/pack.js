@@ -1,5 +1,5 @@
 SF.Pack = (() => {
-  const version='0.6.2', json=x=>JSON.stringify(x,null,2)+'\n';
+  const version='0.7.0', json=x=>JSON.stringify(x,null,2)+'\n';
   const numbered=i=>String(i).padStart(4,'0')+'.png';
   const safePath=p=>typeof p==='string'&&p.length<240&&!p.startsWith('/')&&!/[\\:\x00-\x1f]/.test(p)&&p.split('/').every(s=>s&&s!=='.'&&s!=='..');
   function download(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),60000);}

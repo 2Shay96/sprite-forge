@@ -25,7 +25,8 @@ Third-party material NOT covered by the MIT licence above:
 
 - vendor/jszip.min.js: JSZip, dual MIT / GPLv3. See vendor/JSZip-LICENSE.md.
 - assets/fonts/: Barlow Condensed and Share Tech Mono, SIL Open Font License 1.1.
-  See assets/fonts/OFL.txt.
+  See assets/fonts/OFL.txt and assets/fonts/ShareTechMono-OFL.txt.
+  Trial packages include font notices and licenses in fonts/.
 - assets/sunny-smiles-reference.png (also embedded in the built HTML files):
   a height-reference cutout of Sunny Smiles from Fallout: New Vegas.
   Fallout: New Vegas and its characters are property of Bethesda Softworks /

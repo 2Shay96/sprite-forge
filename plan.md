@@ -1,6 +1,6 @@
 # Sprite Forge Studio — plan to v1.0
 
-Updated: 5 October 2026. Status: Steps 1–3 complete. Supplied 0.7 shell/assets are rebuildable; workflow integration remains Step 4. Steps 4–21 remain pending. Checked progress is backed up on public GitHub main.
+Updated: 6 October 2026. Status: Steps 1–4 complete. Supplied 0.7 appearance/workflow is maintained in modular sources; Trial package consistency passes. Steps 5–21 remain pending. Checked progress is backed up on public GitHub main.
 
 ## 1. Product direction and authority
 
@@ -81,7 +81,7 @@ No commit or push was attempted while adding this planning instruction. The next
 
 ### 4.2 Follow-ups recorded before Step 3 — 5 October 2026
 
-The user requested these issues be resolved or listed explicitly before continuing. This register is part of the plan. Step 3 has recovered the shell; later media/package checks remain open and are not claimed passed.
+The user requested these issues be resolved or listed explicitly before continuing. This register is part of the plan. Steps 3–4 have recovered the shell/workflow and resolved package consistency. Later real-media and release acceptance checks remain open and are not claimed passed.
 
 | ID | Current finding | Resolution task and required evidence | Due / completion gate |
 | --- | --- | --- | --- |
@@ -90,7 +90,7 @@ The user requested these issues be resolved or listed explicitly before continui
 | MEDIA-2 | Emet PNG sequence not located in the inspected workspace/Downloads. No SPRITE_FORGE_EMET source folder is configured. | Obtain the existing original folder path; configure SPRITE_FORGE_EMET; run emet-corrections on first/middle/last frames and preserve hashes. Follow with manual pose tuning using actual footage. Do not label a synthetic replacement as Emet acceptance. | Real Emet checks remain BLOCKED; resolve before the Emet portion of Steps 5/19 or record the unavailable input explicitly. |
 | MEDIA-3 | User's latest editable .spriteforge.zip and distinct real idle/attack/voice takes have not been identified. Historical Salvatore/evidence archives are available, but do not establish the latest authored project or idle dialogue. | Identify saved project/media paths; copy no source into Git; confirm archive provenance and roles. Save/reopen and exercise both attack targets/lifecycle; inspect PNGs and listen to exported WAVs. | Required inputs for Step 19 sign-off; missing inputs are a dependency, not a passed real-project test. |
 | MEDIA-4 | No representative original MP4/MOV/AVI/WebM or opaque cat footage located in inspected project/workspace/Downloads. | Acquire small distributable/supplied fixtures and record container, actual video/audio codecs, rotation, duration, frame/timestamp provenance and redistribution permission. Include portrait/VFR/silent/audio/truncated/large cases and ordinary opaque cat footage. | Decoder investigation Step 6 cannot pass without required MP4/MOV/AVI cases; end-to-end gates Steps 10/19. |
-| PACK-1 | Existing 0.6.2 Trial ZIP passed baseline CRC/HTML-byte checks, but its handoff predates the added 5 October priorities section. Original mismatch was stale documentation, not corrupt HTML. After Step 3 the ZIP also intentionally retains older HTML than the new intermediate shell build. | Preserve baseline ZIP hash 85747568fc14d4004bc51c6615a122e66e10821761c5b08ab27ede5c286473db. After Step 4 produces a verified rebuilt 0.7 workflow, refresh package.mjs including font notices/licenses without discarding the old baseline; update packaging assertions for data fonts, rerun --package and compare packaged HTML/docs to exact tested inputs. Record the new ZIP/HTML hashes. | Package consistency remains FAIL until rerun passes; refresh after Step 4, before treating a Trial package as current. Fresh package/browser release acceptance still belongs to Steps 20–21. |
+| PACK-1 | **Resolved 6 October:** old ZIP/folder moved intact to _backup-0.6.2/trial-before-step4-2026-10-06; old ZIP hash remains 85747568fc14d4004bc51c6615a122e66e10821761c5b08ab27ede5c286473db. Refreshed 0.7 Trial ZIP passes CRC and exact HTML/doc/code/font-license equality against tested inputs. | New HTML SHA-256 b626c94cce900b6f7df260626c7616b4bbbfce6d5ff60138aa36bdfe374b5556; Trial ZIP SHA-256 f3e0528230579c49ef221324a88e3f9126a6c2b4b5c7232e005d35291913724c. Package has 14 files. Repeat integrity after future source/doc edits. | Package consistency PASS. Full fresh-package/browser release acceptance remains Steps 20–21; real-media/listening gates remain Step 5. |
 
 Read-only media inventory on 5 October: all 560 PNG headers and source SHA-256 values inspected; aggregate ordered inventory hash 9f9c00600369be8c1b8b7f855ab2fdc03224124e2c9d0f482dade53ae3ea38d1. These source bytes were not exported, modified or committed. Searches do not establish absence from every disk/cloud location; unresolved inputs need a supplied path.
 
@@ -116,11 +116,13 @@ Integrate the supplied preview's markup, CSS and embedded font/assets into sourc
 
 Completed 5 October: exact supplied markup/reset/theme and four embedded fonts recovered into src/ and assets/fonts; builder reproduces the supplied shell/CSS/font bytes. Existing 230 control contracts preserved. Chrome/Edge offline shell screenshots match the supplied static shell at 1440/1000/720px; live demo/transport smoke and all 16 mandatory suites pass. All 17 behavior modules remain unchanged; new workflow bindings await Step 4. See STATUS.md for build hash and reports.
 
-### [ ] Step 4 — Integrate 0.7 workflow behaviour
+### [x] Step 4 — Integrate 0.7 workflow behaviour
 
 Bring across `steps`, `roster` and reviewed changes to `app`, `studio` and `action-controls`. Verify import routing, roster-derived status, animation selection, state assignments, programmatic navigation, sound selection and export actions. Keep one maintained implementation in src/.
 
 **Gate:** rebuilt HTML provides the complete 0.7 workflow; existing contracts and targeted regression checks pass; rebuilding no longer loses the makeover.
+
+Completed 6 October: steps/roster and reviewed app/studio/action-control changes integrated into 19-module build. Initial recovery rebuilt the supplied preview byte for byte; then corrected inherited export tool metadata to 0.7.0 (schemas unchanged). Chrome/Edge offline real-control fixture tests pass routing, roster/state ownership, clip timing, sound, test kits and save/reopen/Source Pack downloads. All 16 mandatory suites and package checks pass. Trial docs/licenses are current; preserved old package and exact new hashes are recorded above. Full real-media/listening acceptance remains Step 5.
 
 ### [ ] Step 5 — Baseline browser and listening acceptance
 
@@ -278,4 +280,4 @@ This later work needs its own bounded plan after inspecting actual mod/runtime i
 
 ## 9. Immediate next action
 
-Steps 1–3 are complete; evidence is recorded in BASELINE-ACCEPTANCE.md, tests/README.md and STATUS.md. Review section 4.2 for later media/Trial ZIP gates, then select **Step 4** using the preamble above to integrate the preview workflow modules and changed app/studio/action controls. Complete Steps 4–5 before the video decoder investigation. No later step starts automatically.
+Steps 1–4 are complete; evidence is recorded in BASELINE-ACCEPTANCE.md, tests/README.md and STATUS.md. Review section 4.2 for outstanding real-media inputs, then select **Step 5** for full Windows browser and listening acceptance of the rebuilt workflow. Complete that gate before the video decoder investigation. No later step starts automatically.

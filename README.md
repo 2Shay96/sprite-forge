@@ -1,10 +1,10 @@
-# Sprite Forge Studio — 0.7 shell recovery
+# Sprite Forge Studio 0.7.0
 
 > **Status: work-in-progress alpha, AI-assisted.** Free, offline, single-file HTML tool for turning image/video frames into game-ready sprite NPC source packs (built for Fallout: New Vegas modding, aimed at other Bethesda games later).
 >
 > - **Supplied reference:** `Claude outputs/SpriteForge-0.7-preview.html` — authoritative 0.7 appearance and complete preview workflow, preserved unchanged.
-> - **Current source build:** run `node build.mjs` to generate `SpriteForge.html`. Step 3 recovers the exact supplied shell/styles/fonts into sources, with the existing 17 behavior modules. The new roster, step routing, summary, segmented and duplicate-action bindings are pending Step 4; this intermediate build is not a finished 0.7 release.
-> - **Known-good baseline:** `_backup-0.6.2/SpriteForge.html` remains unchanged. Trial ZIP remains the old baseline with its documented stale handoff; refresh after Step 4.
+> - **Current source build:** run `node build.mjs` to generate `SpriteForge.html`. Steps 3–4 integrate the supplied shell/assets and all 19 modules, including roster, routing, summaries, segmented controls and save/export actions. Exported tool metadata is 0.7.0; project schema 7 and Source Pack schema 6 are unchanged.
+> - **Known-good baseline:** `_backup-0.6.2/SpriteForge.html` remains unchanged. The old Trial ZIP/folder are preserved before refreshing the 0.7 package with current documentation and font licenses.
 > - Not yet tested end-to-end in a browser; the GECK / Creation Kit bridge is not built yet.
 > - Licence: MIT for the code (see `LICENSE`). JSZip, fonts and the Sunny Smiles reference image are third-party; see the bottom of `LICENSE`.
 
@@ -80,7 +80,7 @@ node tests/run.cjs
 
 See [tests/README.md](tests/README.md) for native dependencies, explicit browser/media configuration, optional groups and Windows pass/fail/blocked evidence. Node is a developer tool, not a user prerequisite. The test runner never builds or repackages the application.
 
-Step 3 sources reproduce the supplied 0.7 shell and embedded assets. Run `node build.mjs` before tests whenever sources change or on a fresh checkout: the existing tracked HTML is a historical generated artifact, and generated HTML is excluded from this checkpoint under plan section 4.1. Step 4 integrates the remaining preview workflow modules before refreshing the Trial package with `node package.mjs`. Preserve both supplied preview and known-good 0.6.2 backup.
+Sources reproduce the supplied 0.7 appearance and workflow. Run `node build.mjs` before tests whenever sources change or on a fresh checkout: the existing tracked HTML is a historical generated artifact, and generated HTML is excluded from source checkpoints under plan section 4.1. `node package.mjs` refreshes the Trial ZIP from the tested HTML, current docs and font licenses. Preserve supplied preview and known-good 0.6.2 backups. Focused offline Chrome/Edge integration checks pass; full real-media and listening acceptance is Step 5, not a completed v1.0 release.
 
 ## Completed and next
 
