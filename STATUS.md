@@ -4,7 +4,7 @@ Updated: 5 October 2026.
 
 ## Current task
 
-Step 2 tests complete. Follow-up: requested GitHub connector discovery and explicit pre-Step 3 media/package register complete locally; GitHub connection and push remain pending. Steps 3–21 remain pending. Application sources, HTML, supplied preview and packages are unchanged; no rebuild or GECK/mod work occurred.
+Step 2 tests complete. Requested GitHub connector publishing and explicit pre-Step 3 media/package register are complete; checkpoint content is verified on GitHub. Original local commits still await a main-branch push. Steps 3–21 remain pending. Application sources, HTML, supplied preview and packages are unchanged; no rebuild or GECK/mod work occurred.
 
 ## Changes
 
@@ -37,10 +37,12 @@ Exact tested baseline: SpriteForge.html 0.6.2, SHA-256 93ed65579cf1afb7d542f9975
 
 ## GitHub checkpoint
 
-Confirmed repository https://github.com/2Shay96/sprite-forge; main tracks origin/main. Last verified remote checkpoint before this step: 9b0f0dd2742facfd2faece107bcadaa3a212ef1a. Initial fetch showed 0/0 ahead/behind. Use verified @2Shay96 GitHub Desktop sign-in for pushes; CLI authentication remains unavailable. Step 2 local commit is fc577f6e155c9ae88e2c46ae866ccebd69f8f101, not yet on remote main (fresh fetch: 1 ahead / 0 behind). Its Desktop push was interrupted when the user stopped Computer Use. User now requests connector/API access instead of UI control. Plugin discovery confirms GitHub is available but not installed/connected; installation/connection was suggested and must be confirmed before its tools can be used. This documentation follow-up is also pending push. Public fetch succeeds but does not establish authenticated write access.
+Confirmed repository https://github.com/2Shay96/sprite-forge; local main tracks origin/main. GitHub connector is installed, authenticated as 2Shay96 and has verified write access. Published a separate checkpoint through its Git database API without desktop control or rewriting existing history. Fresh git fetch verified checkpoint/windows-step2-media-2026-10-05 at 587d477b00f230867c229861018b079406a7557d; its tree 02ce596b2230cf3b19a2c3cc1f921596d198d27b exactly matches local 8131f08ae6753e53537f981c0b4c2c4fcf8325de, including Step 2 commit fc577f6e155c9ae88e2c46ae866ccebd69f8f101. This receipt update will also be published to the checkpoint branch and verified by tree equality.
+
+Remote main remains 9b0f0dd2742facfd2faece107bcadaa3a212ef1a. Connector create_commit has no author/date metadata parameters, so it creates new commit SHAs rather than uploading the original local commits. Content backup is complete; the original local history remains intact and its main-branch push is still pending CLI authentication. Do not claim main is synchronized. No force push, merge or history rewrite occurred.
 
 Preserved unrelated pre-existing ALPHA-HANDOFF.md modification and untracked CLOUD-HANDOFF.md, FILE-MANIFEST.json, START-HERE-WINDOWS.md and reference/. Generated test output stays ignored. Checkpoint scope is tests, package.json, README, plan and status only.
 
 ## Next action
 
-Install/connect the GitHub integration and inspect its actual tools to finish the pending main-branch backup without desktop control. Media and Trial ZIP tasks are explicitly listed in plan.md section 4.2; Step 3 has not begun.
+When Git CLI authentication is available, push the preserved original local commits to main and verify ancestry. The requested media and Trial ZIP register is complete in plan.md section 4.2; Step 3 has not begun and awaits the user's selection.
