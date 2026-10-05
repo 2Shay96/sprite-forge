@@ -4,7 +4,7 @@ Updated: 5 October 2026.
 
 ## Current task
 
-Step 2 complete: portable Windows tests. Steps 3–21 remain pending. Application sources, HTML, supplied preview and packages are unchanged; no rebuild or GECK/mod work occurred.
+Step 2 tests complete. Follow-up: requested GitHub connector discovery and explicit pre-Step 3 media/package register complete locally; GitHub connection and push remain pending. Steps 3–21 remain pending. Application sources, HTML, supplied preview and packages are unchanged; no rebuild or GECK/mod work occurred.
 
 ## Changes
 
@@ -31,16 +31,16 @@ Exact tested baseline: SpriteForge.html 0.6.2, SHA-256 93ed65579cf1afb7d542f9975
 
 ## Tracked limitations
 
-- Emet and original Salvatore eight-direction checks BLOCKED until SPRITE_FORGE_EMET / SPRITE_FORGE_SALVATORE_DIRECTIONS identify actual original folders. Older browser/milestone2 workflows BLOCKED without SPRITE_FORGE_SALVATORE and still contain historical pre-bank/schema assumptions requiring review before Step 5. Missing inputs were not marked passed.
+- Salvatore original media located at C:\Users\Shadow\Desktop\VibeCoding\fnv\source\Salvatore: eight directions × 70 PNGs, all 1080²; four referenced MP3/WAV files present. Set SPRITE_FORGE_SALVATORE / SPRITE_FORGE_SALVATORE_DIRECTIONS explicitly. Read-only inventory of all 560 PNG headers/hashes; no import/export/listening acceptance claimed. Emet, latest user project, distinct idle/attack/voice and video inputs remain unresolved in inspected locations; see plan.md section 4.2. Older browser/milestone2 scripts still need assertion review before Step 5.
 - Optional release packaging FAILS on the pre-existing packaged ALPHA-HANDOFF.md mismatch. Preserve the old Trial ZIP; reconcile it after source integration. Missing packaged artifacts on a fresh checkout are BLOCKED; default suites require no generated package or historical archives.
 - Full browser workflow, listening, latest authored project, real idle/attack recordings and required video fixture acceptance remain outstanding later-plan work.
 
 ## GitHub checkpoint
 
-Confirmed repository https://github.com/2Shay96/sprite-forge; main tracks origin/main. Last verified remote checkpoint before this step: 9b0f0dd2742facfd2faece107bcadaa3a212ef1a. Initial fetch showed 0/0 ahead/behind. Use verified @2Shay96 GitHub Desktop sign-in for pushes; CLI authentication remains unavailable. Step 2 checked changes are ready for a scoped commit/push and remote-ref verification; the resulting commit is reported in the session handoff.
+Confirmed repository https://github.com/2Shay96/sprite-forge; main tracks origin/main. Last verified remote checkpoint before this step: 9b0f0dd2742facfd2faece107bcadaa3a212ef1a. Initial fetch showed 0/0 ahead/behind. Use verified @2Shay96 GitHub Desktop sign-in for pushes; CLI authentication remains unavailable. Step 2 local commit is fc577f6e155c9ae88e2c46ae866ccebd69f8f101, not yet on remote main (fresh fetch: 1 ahead / 0 behind). Its Desktop push was interrupted when the user stopped Computer Use. User now requests connector/API access instead of UI control. Plugin discovery confirms GitHub is available but not installed/connected; installation/connection was suggested and must be confirmed before its tools can be used. This documentation follow-up is also pending push. Public fetch succeeds but does not establish authenticated write access.
 
 Preserved unrelated pre-existing ALPHA-HANDOFF.md modification and untracked CLOUD-HANDOFF.md, FILE-MANIFEST.json, START-HERE-WINDOWS.md and reference/. Generated test output stays ignored. Checkpoint scope is tests, package.json, README, plan and status only.
 
 ## Next action
 
-Execute Step 3 of plan.md: recover the supplied 0.7 shell and embedded assets into modular build inputs, preserving bindings and offline delivery. Do not start workflow integration (Step 4) in that session.
+Install/connect the GitHub integration and inspect its actual tools to finish the pending main-branch backup without desktop control. Media and Trial ZIP tasks are explicitly listed in plan.md section 4.2; Step 3 has not begun.
