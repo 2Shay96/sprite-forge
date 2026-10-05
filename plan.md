@@ -1,6 +1,6 @@
 # Sprite Forge Studio — plan to v1.0
 
-Updated: 5 October 2026. Status: Steps 1–2 complete. Portable Windows tests pass; original commits are pushed and verified on public GitHub main. Steps 3–21 remain pending.
+Updated: 5 October 2026. Status: Steps 1–3 complete. Supplied 0.7 shell/assets are rebuildable; workflow integration remains Step 4. Steps 4–21 remain pending. Checked progress is backed up on public GitHub main.
 
 ## 1. Product direction and authority
 
@@ -81,7 +81,7 @@ No commit or push was attempted while adding this planning instruction. The next
 
 ### 4.2 Follow-ups recorded before Step 3 — 5 October 2026
 
-The user requested these issues be resolved or listed explicitly before continuing. This register is now part of the plan. Step 3 may recover the shell while later media/package checks remain open; it must not claim those checks passed. No Step 3 work has begun.
+The user requested these issues be resolved or listed explicitly before continuing. This register is part of the plan. Step 3 has recovered the shell; later media/package checks remain open and are not claimed passed.
 
 | ID | Current finding | Resolution task and required evidence | Due / completion gate |
 | --- | --- | --- | --- |
@@ -90,7 +90,7 @@ The user requested these issues be resolved or listed explicitly before continui
 | MEDIA-2 | Emet PNG sequence not located in the inspected workspace/Downloads. No SPRITE_FORGE_EMET source folder is configured. | Obtain the existing original folder path; configure SPRITE_FORGE_EMET; run emet-corrections on first/middle/last frames and preserve hashes. Follow with manual pose tuning using actual footage. Do not label a synthetic replacement as Emet acceptance. | Real Emet checks remain BLOCKED; resolve before the Emet portion of Steps 5/19 or record the unavailable input explicitly. |
 | MEDIA-3 | User's latest editable .spriteforge.zip and distinct real idle/attack/voice takes have not been identified. Historical Salvatore/evidence archives are available, but do not establish the latest authored project or idle dialogue. | Identify saved project/media paths; copy no source into Git; confirm archive provenance and roles. Save/reopen and exercise both attack targets/lifecycle; inspect PNGs and listen to exported WAVs. | Required inputs for Step 19 sign-off; missing inputs are a dependency, not a passed real-project test. |
 | MEDIA-4 | No representative original MP4/MOV/AVI/WebM or opaque cat footage located in inspected project/workspace/Downloads. | Acquire small distributable/supplied fixtures and record container, actual video/audio codecs, rotation, duration, frame/timestamp provenance and redistribution permission. Include portrait/VFR/silent/audio/truncated/large cases and ordinary opaque cat footage. | Decoder investigation Step 6 cannot pass without required MP4/MOV/AVI cases; end-to-end gates Steps 10/19. |
-| PACK-1 | Existing 0.6.2 Trial ZIP passes CRC and HTML-byte checks, but fails current ALPHA-HANDOFF.md equality. Read-only comparison confirms its handoff matches the working document before the added 5 October priorities section. This is stale documentation, not evidence of corrupt HTML. | Preserve baseline ZIP hash 85747568fc14d4004bc51c6615a122e66e10821761c5b08ab27ede5c286473db. After Steps 3–4 produce a verified rebuilt 0.7 workflow, run package.mjs without discarding the old baseline; rerun --package and compare packaged HTML/docs to exact tested inputs. Record the new ZIP/HTML hashes. Do not rebuild old sources now merely to hide the mismatch. | Package consistency remains FAIL until rerun passes; refresh after Step 4, before treating a Trial package as current. Fresh package/browser release acceptance still belongs to Steps 20–21. |
+| PACK-1 | Existing 0.6.2 Trial ZIP passed baseline CRC/HTML-byte checks, but its handoff predates the added 5 October priorities section. Original mismatch was stale documentation, not corrupt HTML. After Step 3 the ZIP also intentionally retains older HTML than the new intermediate shell build. | Preserve baseline ZIP hash 85747568fc14d4004bc51c6615a122e66e10821761c5b08ab27ede5c286473db. After Step 4 produces a verified rebuilt 0.7 workflow, refresh package.mjs including font notices/licenses without discarding the old baseline; update packaging assertions for data fonts, rerun --package and compare packaged HTML/docs to exact tested inputs. Record the new ZIP/HTML hashes. | Package consistency remains FAIL until rerun passes; refresh after Step 4, before treating a Trial package as current. Fresh package/browser release acceptance still belongs to Steps 20–21. |
 
 Read-only media inventory on 5 October: all 560 PNG headers and source SHA-256 values inspected; aggregate ordered inventory hash 9f9c00600369be8c1b8b7f855ab2fdc03224124e2c9d0f482dade53ae3ea38d1. These source bytes were not exported, modified or committed. Searches do not establish absence from every disk/cloud location; unresolved inputs need a supplied path.
 
@@ -108,11 +108,13 @@ Replace hardcoded Mac runtime/media paths with explicit configuration and projec
 
 **Gate:** available baseline suites run on Windows with clear pass/fail/blocked results, including source-facing coverage alongside timing, placement, corrections, playback, banks and archives.
 
-### [ ] Step 3 — Recover the 0.7 shell and assets into sources
+### [x] Step 3 — Recover the 0.7 shell and assets into sources
 
 Integrate the supplied preview's markup, CSS and embedded font/assets into source files and build inputs. Preserve control IDs, tags where handlers/tests depend on them, input bounds, option values, data attributes and bindings. Keep the supplied visual design. Use the historical layout plan as a map, not a demand to redesign the delivered preview.
 
 **Gate:** a build reproduces the 0.7 shell/assets without network dependencies. This checkpoint is not complete workflow acceptance; that follows in Step 4.
+
+Completed 5 October: exact supplied markup/reset/theme and four embedded fonts recovered into src/ and assets/fonts; builder reproduces the supplied shell/CSS/font bytes. Existing 230 control contracts preserved. Chrome/Edge offline shell screenshots match the supplied static shell at 1440/1000/720px; live demo/transport smoke and all 16 mandatory suites pass. All 17 behavior modules remain unchanged; new workflow bindings await Step 4. See STATUS.md for build hash and reports.
 
 ### [ ] Step 4 — Integrate 0.7 workflow behaviour
 
@@ -276,4 +278,4 @@ This later work needs its own bounded plan after inspecting actual mod/runtime i
 
 ## 9. Immediate next action
 
-Step 1 baseline evidence is recorded in BASELINE-ACCEPTANCE.md; Step 2 portable tests and results are documented in tests/README.md and STATUS.md. Review section 4.2 for the recorded GitHub, media and Trial ZIP follow-ups before starting **Step 3** using the preamble above. Complete Steps 3–5 to establish a rebuildable, tested foundation, then tackle the video decoder investigation before adding the remaining features.
+Steps 1–3 are complete; evidence is recorded in BASELINE-ACCEPTANCE.md, tests/README.md and STATUS.md. Review section 4.2 for later media/Trial ZIP gates, then select **Step 4** using the preamble above to integrate the preview workflow modules and changed app/studio/action controls. Complete Steps 4–5 before the video decoder investigation. No later step starts automatically.

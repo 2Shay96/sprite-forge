@@ -6,7 +6,7 @@ Run from the project directory with Node.js 22 or newer:
 node tests/run.cjs
 ```
 
-This runs 16 mandatory self-contained suites, sequentially in isolated processes. The checkout can have any name and contain spaces. From another directory, pass the absolute path to tests/run.cjs. No application build or package command is part of testing.
+This runs 16 mandatory self-contained suites, sequentially in isolated processes. The checkout can have any name and contain spaces. From another directory, pass the absolute path to tests/run.cjs. Build first with `node build.mjs` after source changes or on a fresh checkout. No build or package command runs automatically during testing.
 
 ## Development dependencies
 
@@ -26,7 +26,7 @@ This environment value is machine-specific setup, never a baked-in fallback. Wit
 | Command / group | Evidence |
 | --- | --- |
 | Default | Pure timing/reference/simulator/playback/bank scheduler/audio clock; native placement/corrections/PNG/archive/media; mocked DOM controls; source-facing; source/bundle syntax and bindings |
-| `--browser` | Fresh isolated offline browser smoke: startup, demo review/accept, transport, no page errors or HTTP requests. Not full workflow sign-off or listening |
+| `--browser` | Fresh isolated offline smoke plus shell checks: existing startup/demo/transport; 230 baseline control contracts; four embedded fonts; reference/rebuilt shell screenshot equality at 1440/1000/720px. Shell comparison disables scripts deliberately; not full workflow sign-off or listening |
 | `--external` | Historical archive reopen, three real Emet sample frames, full Salvatore eight-direction browser workflow; missing configured inputs are BLOCKED |
 | `--package` | Existing Trial ZIP CRC/HTML/doc consistency; never regenerates stale packages |
 | `--legacy-browser` | Older browser.cjs and milestone2.cjs workflows with original assertions. They contain pre-bank/schema assumptions and need review before Step 5; not release acceptance |
@@ -43,7 +43,7 @@ $env:SPRITE_FORGE_BROWSER_CHANNEL = 'chrome'  # default; use 'msedge' for Edge
 node tests/run.cjs --suite smoke
 ```
 
-Or set `SPRITE_FORGE_BROWSER` to the full installed executable path. Files are opened through a correctly encoded file URL, including Windows spaces. Tests launch a new headless browser; they do not refresh the user's loaded project/tab. Browser startup failures should stay visible. Full Chrome/Edge workflow and listening acceptance is Step 5 after source integration.
+Or set `SPRITE_FORGE_BROWSER` to the full installed executable path. Files are opened through a correctly encoded file URL, including Windows spaces. Tests launch a new headless browser; they do not refresh the user's loaded project/tab. Browser startup failures should stay visible. `--suite shell` additionally needs Git and the repository's recorded cdb4d63 baseline source; shallow clones without that history are BLOCKED until history is fetched. It compares static rendered shells with scripts disabled and reduced motion, loads all four fonts, and preserves native control tags, bounds, accepted types, data-setting attributes and select option values. The smoke suite executes the real intermediate build. Full Chrome/Edge workflow and listening acceptance is Step 5 after source integration.
 
 ## Optional external inputs
 

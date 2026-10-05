@@ -1,8 +1,8 @@
-# Architecture and data contracts — Studio 0.6.2
+# Architecture and data contracts — 0.7 shell / 0.6.2 behavior
 
 ## Offline bundle
 
-`build.mjs` injects local styles, vendored JSZip, the embedded Sunny reference and seventeen ordered modules into `src/index.html`. The release HTML is about 1.58 MB, excluding user media. Scripts, fonts, images and audio require no network. CSP disallows connections and permits local blob/data media. Plain JavaScript and explicit `SF` namespaces keep rebuilding dependency-free; target adapters remain separate from authoring.
+`build.mjs` injects the supplied 0.7 shell's local fonts/reset/theme, vendored JSZip, embedded Sunny reference and seventeen unchanged ordered behavior modules into `src/index.html`. `src/fonts.css` references local TTF/WOFF assets; the builder embeds their exact bytes as data URLs. CSS textures remain embedded SVG data URLs. CSP disallows connections and permits data fonts and local blob/data media. The Step 3 intermediate HTML is about 1.77 MB, excluding user media. Building needs Node only. The preview's `steps`/`roster` modules and three changed behavior modules remain for Step 4; the recovered shell alone does not provide their new workflow bindings. Plain JavaScript and explicit `SF` namespaces keep rebuilding dependency-free; target adapters remain separate from authoring.
 
 | Module | Responsibility |
 | --- | --- |
