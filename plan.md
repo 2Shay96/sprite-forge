@@ -1,6 +1,6 @@
 # Sprite Forge Studio — plan to v1.0
 
-Updated: 5 October 2026. Status: Step 1 baseline documentation complete; GitHub checkpoint verified. Steps 2–21 remain pending.
+Updated: 5 October 2026. Status: Steps 1–2 complete. Portable Windows tests pass; Step 2 GitHub checkpoint verification pending. Steps 3–21 remain pending.
 
 ## 1. Product direction and authority
 
@@ -87,7 +87,7 @@ Confirm the project directory, reference hash, source versions, existing changes
 
 **Gate:** one authoritative working project and build reference; a release checklist with no ambiguous “latest” build; verified GitHub checkpoint (or an explicitly unresolved setup blocker); no application behaviour changes. A setup blocker must remain tracked until remote backup succeeds.
 
-### [ ] Step 2 — Portable Windows tests
+### [x] Step 2 — Portable Windows tests
 
 Replace hardcoded Mac runtime/media paths with explicit configuration and project-relative paths. Separate mandatory self-contained tests from external-media suites. Document dependency setup and one repeatable test entry point. Do not mark missing dependencies or fixtures as successful tests. Capture pre-existing failures before modifying the application.
 
@@ -261,4 +261,4 @@ This later work needs its own bounded plan after inspecting actual mod/runtime i
 
 ## 9. Immediate next action
 
-Step 1 baseline evidence is recorded in BASELINE-ACCEPTANCE.md and STATUS.md. Start **Step 2** using the preamble above. Complete Steps 2–5 to establish a rebuildable, tested foundation, then tackle the video decoder investigation before adding the remaining features.
+Step 1 baseline evidence is recorded in BASELINE-ACCEPTANCE.md; Step 2 portable tests and results are documented in tests/README.md and STATUS.md. Start **Step 3** using the preamble above. Complete Steps 3–5 to establish a rebuildable, tested foundation, then tackle the video decoder investigation before adding the remaining features.

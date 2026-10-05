@@ -4,26 +4,43 @@ Updated: 5 October 2026.
 
 ## Current task
 
-Step 1 baseline and acceptance documentation is complete and its checkpoint is verified on GitHub. No later step started; no application behaviour changed.
+Step 2 complete: portable Windows tests. Steps 3–21 remain pending. Application sources, HTML, supplied preview and packages are unchanged; no rebuild or GECK/mod work occurred.
 
-## Changes and evidence
+## Changes
 
-- Added BASELINE-ACCEPTANCE.md: authoritative project/artifact hashes, source/preview split, fixtures and missing real media, environment targets and release acceptance matrix for every required v1.0 feature.
-- Preserved the stable 0.6.2 HTML/backup and supplied 0.7 preview. All 17 maintained modules parse and match the stable bundle; preview has 14 unchanged modules, three changed and two new. Supplied/package 0.7 SHA-256 matches: 908f06d476e40e004bcc499c6d5a62dfba267a4ddbc99802b1bfde26782307e3.
-- Stable HTML SHA-256: 93ed65579cf1afb7d542f9975e362e90996a6ef0896059722d69af10fedad28b. Trial ZIP CRC reads and its HTML matches stable; packaged alpha handoff differs from the pre-existing edited working document. No build/package run.
-- Verified implementation tool version 0.6.2, project schema 7 (reads 1–7), Source Pack schema 6. Studio defines desired future runtime behaviour; GECK/mod work remains outside this plan.
-- Inventoried nine supplied fixture files and 32 historical evidence ZIPs. No video fixtures established. Latest user project, real idle/attack/voice media, Emet and cat video remain input dependencies for later acceptance.
-- Node v24.19.0 and Git 2.53.0.windows.3 available. Installed Chrome 154.0.8037.98 and Edge 154.0.4258.53 recorded as inventory only.
-- Checks: git status/diff/remotes/upstream/fetch/ahead-behind; public repository metadata; SHA-256/size comparison; node:vm source syntax and embedded-module comparison; vendored JSZip/CRC and packaged HTML/doc comparisons; fixture/test/environment inventory. No runtime suites, Studio browser acceptance or human listening performed. Tests still contain Mac paths and parent-folder assumptions; Step 2 addresses them.
+- Added tests/config.cjs and tests/run.cjs: project-relative paths independent of checkout name/current directory; explicitly configured dependencies/media/browser; isolated sequential processes; per-suite PASS/FAIL/BLOCKED, nonzero failure/block exits, logs and exact artifact hashes.
+- Added private development package.json with the tested native/browser dependency versions. No installation was necessary: explicitly used the discovered bundled packages. A normal npm install route is documented, not claimed tested on this PC.
+- Adapted existing tests to shared paths and separate generated output folders. No historical evidence or media was overwritten. Real Emet checks and historical archive reopen moved into optional suites; source-facing remains mandatory. Browser tests use encoded file URLs and configurable Chrome/Edge, without requiring a game/configuration repository.
+- Separated mandatory source/bundle checks from optional Trial packaging checks. Kept obsolete historical browser workflows separately selectable; they are not current acceptance evidence.
+- Corrected two pre-existing keyer-test wording assertions to the existing 0.6.2 labels, preserving their underlying draft/commit/history/crop checks. No application fix was needed.
+- Updated README development instructions and tests/README.md with setup, commands, inputs, evidence distinctions and the Windows result summary.
+
+## Checks and evidence
+
+Baseline before edits: all 20 original executable scripts exited 1 before assertions due to Mac dependency paths or the assumed sprite-forge parent. Local report: evidence/windows-step2/pre-portability.json. After path adaptation, keyer-controls exposed old Draft/Crop to base wording; those expectations were corrected and the complete suite passed.
+
+Final mandatory command: node tests/run.cjs, with SPRITE_FORGE_NODE_MODULES explicitly configured. **16/16 PASS**, exit 0 on Windows / Node v24.19.0; @napi-rs/canvas 0.1.100, sharp 0.35.4. Covers timing/reference/simulation, state playback, banks/audio clock, native placement/correction/archive/media pixels, mock-DOM controls, 8192² boundary, source facing and bundle/source integrity. Report: evidence/test-runs/2026-10-05T16-19-44-410Z-19072/results.json. Native/fake Web Audio/ImageDecoder results do not prove browser media decoding or audible output.
+
+Optional historical-archives PASS: legacy schemas 1/2, actual 70-frame Salvatore front reopen and A4 banks. Initial combined report: evidence/test-runs/2026-10-05T14-53-11-040Z-18812/results.json (also records the earlier keyer failure and missing media; not the final mandatory verdict).
+
+Offline headless smoke PASS in Chrome 154.0.8037.98 and Edge 154.0.4258.53 using Playwright 1.62.1: local-file startup, demo review/accept, transport, no page exceptions/HTTP requests. Reports: evidence/test-runs/2026-10-05T16-18-10-074Z-9156/smoke/browser-smoke.json and evidence/test-runs/2026-10-05T16-22-33-052Z-14660/smoke/browser-smoke.json. Fresh isolated browsers only; no user project tab refreshed. Full workflow/layout acceptance and human listening remain pending Step 5.
+
+Runner verification PASS: absolute entry point from unrelated directory; nonexistent dependency explicitly BLOCKED with exit 2; existing stale package stays FAIL with exit 1 and actionable ALPHA-HANDOFF.md mismatch. All test sources parse. Application/source diff empty and stable/preview hashes unchanged.
+
+Exact tested baseline: SpriteForge.html 0.6.2, SHA-256 93ed65579cf1afb7d542f9975e362e90996a6ef0896059722d69af10fedad28b. Preserved supplied 0.7 preview SHA-256 908f06d476e40e004bcc499c6d5a62dfba267a4ddbc99802b1bfde26782307e3. Project schema 7 / Source Pack schema 6 unchanged.
+
+## Tracked limitations
+
+- Emet and original Salvatore eight-direction checks BLOCKED until SPRITE_FORGE_EMET / SPRITE_FORGE_SALVATORE_DIRECTIONS identify actual original folders. Older browser/milestone2 workflows BLOCKED without SPRITE_FORGE_SALVATORE and still contain historical pre-bank/schema assumptions requiring review before Step 5. Missing inputs were not marked passed.
+- Optional release packaging FAILS on the pre-existing packaged ALPHA-HANDOFF.md mismatch. Preserve the old Trial ZIP; reconcile it after source integration. Missing packaged artifacts on a fresh checkout are BLOCKED; default suites require no generated package or historical archives.
+- Full browser workflow, listening, latest authored project, real idle/attack recordings and required video fixture acceptance remain outstanding later-plan work.
 
 ## GitHub checkpoint
 
-Confirmed repository: https://github.com/2Shay96/sprite-forge, origin URL https://github.com/2Shay96/sprite-forge.git; working branch main, upstream origin/main. Existing repository is public; visibility was preserved. GitHub Desktop Accounts confirms @2Shay96 sign-in and now manages the exact existing checkout. Commit identity is 2Shay <327810178+2Shay96@users.noreply.github.com>.
+Confirmed repository https://github.com/2Shay96/sprite-forge; main tracks origin/main. Last verified remote checkpoint before this step: 9b0f0dd2742facfd2faece107bcadaa3a212ef1a. Initial fetch showed 0/0 ahead/behind. Use verified @2Shay96 GitHub Desktop sign-in for pushes; CLI authentication remains unavailable. Step 2 checked changes are ready for a scoped commit/push and remote-ref verification; the resulting commit is reported in the session handoff.
 
-Last verified remote baseline checkpoint: 958e38e62c61a15b081a3aec66f8d21383c60f89 (5 October 2026), pushed through GitHub Desktop. git ls-remote origin refs/heads/main matched local HEAD; a fresh fetch confirmed ahead/behind 0/0. This receipt update follows that checkpoint and need not contain its own SHA. Fetch succeeded; initial local/remote ahead-behind was 0/0. CLI gh is missing and command-line credential manager has no listed account. Noninteractive CLI push dry-run failed because Git could not read the GitHub username; Desktop sign-in is separate. Desktop push succeeded using the verified account. Use Desktop for routine pushes while CLI authentication remains unavailable; there is no outstanding baseline backup blocker.
-
-Checkpoint scope: BASELINE-ACCEPTANCE.md, STATUS.md and plan.md only. Existing ALPHA-HANDOFF.md modification and untracked CLOUD-HANDOFF.md, FILE-MANIFEST.json, START-HERE-WINDOWS.md and reference/ were preserved outside this commit. No source, HTML, archive, fixture, game or other project changes.
+Preserved unrelated pre-existing ALPHA-HANDOFF.md modification and untracked CLOUD-HANDOFF.md, FILE-MANIFEST.json, START-HERE-WINDOWS.md and reference/. Generated test output stays ignored. Checkpoint scope is tests, package.json, README, plan and status only.
 
 ## Next action
 
-Execute Step 2 of plan.md: portable Windows tests with explicit pass/fail/blocked results. Use the existing Desktop connection for checked progress backups.
+Execute Step 3 of plan.md: recover the supplied 0.7 shell and embedded assets into modular build inputs, preserving bindings and offline delivery. Do not start workflow integration (Step 4) in that session.

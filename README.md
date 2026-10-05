@@ -71,27 +71,15 @@ Limits: 2,000 image frames, 512 MB original media, 16 takes/cue, 64/project, 128
 
 ## Development
 
-`build.mjs` bundles seventeen local modules, local styles, vendored JSZip and Sunny into one HTML. No package install is needed. Run from the workspace parent:
+`build.mjs` bundles seventeen local modules, local styles, vendored JSZip and Sunny into one offline HTML. Run tests from this project directory:
 
-```sh
-node sprite-forge/build.mjs
-node sprite-forge/tests/playback.cjs
-node sprite-forge/tests/playback-controls.cjs
-node sprite-forge/tests/corrections.cjs
-node sprite-forge/tests/keyer-controls.cjs
-node sprite-forge/tests/placement.cjs
-node sprite-forge/tests/placement-controls.cjs
-node sprite-forge/tests/bank-scheduler.cjs
-node sprite-forge/tests/audio-loop-policy.cjs
-node sprite-forge/tests/bank-controls.cjs
-node sprite-forge/tests/bank-persistence.cjs
-node sprite-forge/tests/media-formats.cjs
-node sprite-forge/tests/timeline.cjs
-node sprite-forge/tests/reference.cjs
-node sprite-forge/tests/simulator.cjs
-node sprite-forge/package.mjs
-node sprite-forge/tests/release.cjs
+```powershell
+node tests/run.cjs
 ```
+
+See [tests/README.md](tests/README.md) for native dependencies, explicit browser/media configuration, optional groups and Windows pass/fail/blocked evidence. Node is a developer tool, not a user prerequisite. The test runner never builds or repackages the application.
+
+The sources still reproduce 0.6.2; preserve the supplied 0.7 preview until Steps 3–4 integrate it. Once integration is ready, `node build.mjs` and `node package.mjs` run from this directory. Do not rebuild the older shell merely to run tests.
 
 ## Completed and next
 
