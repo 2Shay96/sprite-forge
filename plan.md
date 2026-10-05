@@ -1,6 +1,6 @@
 # Sprite Forge Studio — plan to v1.0
 
-Updated: 5 October 2026. Status: Step 1 baseline documentation complete; GitHub checkpoint verification in progress. Steps 2–21 remain pending.
+Updated: 5 October 2026. Status: Step 1 baseline documentation complete; GitHub checkpoint verified. Steps 2–21 remain pending.
 
 ## 1. Product direction and authority
 
@@ -261,4 +261,4 @@ This later work needs its own bounded plan after inspecting actual mod/runtime i
 
 ## 9. Immediate next action
 
-Step 1 baseline evidence is recorded in BASELINE-ACCEPTANCE.md and STATUS.md. Finish any pending remote checkpoint verification, then start **Step 2** using the preamble above. Complete Steps 2–5 to establish a rebuildable, tested foundation, then tackle the video decoder investigation before adding the remaining features.
+Step 1 baseline evidence is recorded in BASELINE-ACCEPTANCE.md and STATUS.md. Start **Step 2** using the preamble above. Complete Steps 2–5 to establish a rebuildable, tested foundation, then tackle the video decoder investigation before adding the remaining features.

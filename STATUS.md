@@ -4,7 +4,7 @@ Updated: 5 October 2026.
 
 ## Current task
 
-Step 1 baseline and acceptance documentation is complete locally. Its reviewed checkpoint is ready for GitHub Desktop push verification. No later step started; no application behaviour changed.
+Step 1 baseline and acceptance documentation is complete and its checkpoint is verified on GitHub. No later step started; no application behaviour changed.
 
 ## Changes and evidence
 
@@ -20,10 +20,10 @@ Step 1 baseline and acceptance documentation is complete locally. Its reviewed c
 
 Confirmed repository: https://github.com/2Shay96/sprite-forge, origin URL https://github.com/2Shay96/sprite-forge.git; working branch main, upstream origin/main. Existing repository is public; visibility was preserved. GitHub Desktop Accounts confirms @2Shay96 sign-in and now manages the exact existing checkout. Commit identity is 2Shay <327810178+2Shay96@users.noreply.github.com>.
 
-Last verified remote checkpoint before this session: 43e6ec5 (full SHA obtainable from origin/main). Fetch succeeded; initial local/remote ahead-behind was 0/0. CLI gh is missing and command-line credential manager has no listed account. Noninteractive CLI push dry-run failed because Git could not read the GitHub username; Desktop sign-in is separate. The reviewed baseline commit will be pushed through Desktop and remote refs checked before claiming backup success.
+Last verified remote baseline checkpoint: 958e38e62c61a15b081a3aec66f8d21383c60f89 (5 October 2026), pushed through GitHub Desktop. git ls-remote origin refs/heads/main matched local HEAD; a fresh fetch confirmed ahead/behind 0/0. This receipt update follows that checkpoint and need not contain its own SHA. Fetch succeeded; initial local/remote ahead-behind was 0/0. CLI gh is missing and command-line credential manager has no listed account. Noninteractive CLI push dry-run failed because Git could not read the GitHub username; Desktop sign-in is separate. Desktop push succeeded using the verified account. Use Desktop for routine pushes while CLI authentication remains unavailable; there is no outstanding baseline backup blocker.
 
 Checkpoint scope: BASELINE-ACCEPTANCE.md, STATUS.md and plan.md only. Existing ALPHA-HANDOFF.md modification and untracked CLOUD-HANDOFF.md, FILE-MANIFEST.json, START-HERE-WINDOWS.md and reference/ were preserved outside this commit. No source, HTML, archive, fixture, game or other project changes.
 
 ## Next action
 
-Verify the Step 1 checkpoint on origin/main, then execute Step 2 of plan.md: portable Windows tests with explicit pass/fail/blocked results. Any unresolved backup failure stays tracked until verified remote success.
+Execute Step 2 of plan.md: portable Windows tests with explicit pass/fail/blocked results. Use the existing Desktop connection for checked progress backups.
