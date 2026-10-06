@@ -37,6 +37,7 @@ Required:
 - Practical video-to-animation import: MP4, MOV, AVI and additional formats demonstrated by fixtures; opaque video supported normally.
 - Warmth, colour tint and vibrance controls, persisted and applied consistently in preview and exported PNGs.
 - Separate engine-material selections for defeated and hit effects: flesh/glass/cloth defeat choices and the requested Mr Handy metallic hit default for new projects.
+- A configurable enemy haunting-start delay range (for example 2–7 days), saved with the project and exported as desired FNV runtime behavior. Studio authoring is Step 14a; actual game scheduling remains later GECK/FNV integration.
 - Reliable save/reopen, migration, original-media preservation, export validation, cancellation and large-project handling.
 - Usable keyboard/narrow-window behaviour, current documentation, offline packaging and real-project acceptance.
 - A clear, versioned behaviour contract for the future GECK implementation.
@@ -194,15 +195,25 @@ Persist stable semantic selections and export them as desired runtime behaviour.
 
 **Gate:** controls, reset/history where appropriate, save/reopen and Source Pack metadata agree. Imported sound banks stay independent. Later GECK mapping has an explicit contract.
 
+### [ ] Step 14a — Haunting-start delay range and runtime contract
+
+User addition, 6 October 2026: Sprite Forge must let the author choose a range for when an enemy begins haunting the player, for example **between 2 and 7 days**. Add clearly labeled earliest/latest delay controls to the encounter settings in Field test. The example is not an approved default for every project.
+
+Before implementation, settle the time unit and trigger semantics: proposed unit is **FNV in-game days**; define exactly what starts the countdown and whether "begins haunting" means spawning the enemy or activating an existing enemy's pursuit. Define when a new delay is sampled, its distribution/boundary rules, and cancellation/reset behavior around defeat, pickup, repack and redeployment. Record these choices rather than assuming a recurring haunt interval was requested.
+
+Implement validated minimum/maximum settings, dirty tracking, appropriate Undo/Redo, save/reopen and legacy migration. Reject negative/non-finite delays and minimum greater than maximum; equal bounds mean a fixed delay. Preserve legacy behavior for projects without an authored range. Export the range, unit, sampling policy and start/reset events as versioned semantic Source Pack metadata; do not invent game record IDs. Any Studio timer test uses an explicitly simulated clock; displaying these settings does not establish live FNV support.
+
+**Gate:** authoring controls, validation/history, legacy migration, save/reopen and Source Pack metadata agree. Controlled-clock tests verify configured boundaries and fixed-delay behavior. The later FNV adapter has an explicit scheduling contract, including persistence across game save/reload and the intended effects of waiting, sleeping and fast travel. Actual mod integration and game acceptance remain section 8, after Studio v1.0.
+
 ### [ ] Step 15 — Save and replacement reliability
 
 Audit dirty-state tracking across old and new settings, save failures, cancelled operations, corrupt archives, unsupported schemas and opening a replacement project. Validate candidates before swapping active data. Protect against unintended loss of unsaved work and explain what is saved. Distinguish an initiated browser download from a file the user has successfully retained.
 
-**Gate:** failures/cancellations retain the current project; legacy and new archives preserve originals/settings; edited video/colour/material data participates in dirty tracking. Full autosave remains separate scope.
+**Gate:** failures/cancellations retain the current project; legacy and new archives preserve originals/settings; edited video/colour/material/haunting-delay data participates in dirty tracking. Full autosave remains separate scope.
 
 ### [ ] Step 16 — Export validation and capability report
 
-Make preflight identify real blockers and navigate to fixes: invalid bounds, unresolved correction keys, missing references, audio conversion issues and project/output limits. Report Source Pack content and versioned desired behaviour, including video provenance, colour recipes and material choices. Runtime-pending status must not silently drop Studio settings.
+Make preflight identify real blockers and navigate to fixes: invalid bounds, unresolved correction keys, missing references, audio conversion issues and project/output limits. Report Source Pack content and versioned desired behaviour, including video provenance, colour recipes, material choices and haunting-delay ranges/time units/start-reset policies. Runtime-pending status must not silently drop Studio settings.
 
 **Gate:** complete exports contain consistent PNG/WAV/schedule/manifest data; failed exports explain the repair; no source pack is presented as an installable mod.
 
@@ -216,13 +227,13 @@ Measure image- and video-heavy import, editing, save/reopen and export; include 
 
 Test narrow windows, Windows display scaling, keyboard navigation, visible focus, dialogs, disclosures and reduced motion. Preserve the supplied design while making the import-to-export path clear for nontechnical users, including “upload a cat video.” Keep advanced settings out of the basic flow.
 
-Keep distinctions visible: selected animation versus state assignment; fixed root versus correction pivot; world size versus preview zoom; Source FPS/speed versus Display FPS; committed keys versus drafts; original video versus extracted animation; imported recordings versus engine-material choices.
+Keep distinctions visible: selected animation versus state assignment; fixed root versus correction pivot; world size versus preview zoom; Source FPS/speed versus Display FPS; committed keys versus drafts; original video versus extracted animation; imported recordings versus engine-material choices; haunting delay in explicitly labeled days versus encounter distance or animation time.
 
 **Gate:** essential controls remain readable/reachable and a new user can complete the basic workflow without developer assistance.
 
 ### [ ] Step 19 — End-to-end real-project acceptance
 
-Use the user's real main/idle/attack images and recordings, Emet footage where available, and at least one common opaque video. Author settings, exercise the full hostile→defeat→pickup→deploy→combat→idle/roam→repack lifecycle, interrupt it at awkward points, save, close, reopen and export. Inspect output images and listen to exported WAVs. Include both attack targets and per-animation facing.
+Use the user's real main/idle/attack images and recordings, Emet footage where available, and at least one common opaque video. Author settings, exercise the full hostile→defeat→pickup→deploy→combat→idle/roam→repack lifecycle, interrupt it at awkward points, save, close, reopen and export. Inspect output images and listen to exported WAVs. Include both attack targets and per-animation facing. Verify authored haunting-delay settings survive this round trip; keep controlled-clock Studio evidence separate from later live-game scheduling acceptance.
 
 **Gate:** representative real projects pass end to end. Missing user media is a recorded dependency, not an excuse to mark synthetic tests as real-project acceptance. Preserve a reproducible signed-off project and Source Pack.
 
@@ -230,7 +241,7 @@ Use the user's real main/idle/attack images and recordings, Emet footage where a
 
 Refresh feature guide, quick start, limitations, version labels, third-party notices and Trial ZIP. Include small distributable fixtures and a useful sample. Document tested video combinations accurately. Ensure the packaged HTML is exactly the tested one.
 
-Produce a compact Studio-to-GECK contract: states/events, clip bindings, timing, roots/physical dimensions, correction/filter baking, source-facing/directions, bank scheduling/ownership, engine-material selections and known preview-only controls. The contract records Studio's desired behaviour; it must not erase a feature merely because the existing mod cannot yet do it.
+Produce a compact Studio-to-GECK contract: states/events, clip bindings, timing, roots/physical dimensions, correction/filter baking, source-facing/directions, bank scheduling/ownership, engine-material selections, haunting-delay range/unit/sampling/trigger/reset/save-reload rules and known preview-only controls. The contract records Studio's desired behaviour; it must not erase a feature merely because the existing mod cannot yet do it.
 
 **Gate:** a fresh extraction works offline using the instructions; the package is self-contained; the later GECK work has reproducible inputs and an explicit behaviour specification.
 
@@ -271,8 +282,8 @@ This is future sequencing, not authorization to implement it during the Studio s
 
 1. Compare the final Studio contract with the preserved working mod/builder; document supported mappings and gaps.
 2. Adapt one Source Pack into actual compatible game assets while preserving the proven builder conventions.
-3. Validate timing, alpha, roots/scale, audio and the lifecycle in GECK/FNV, including save/reload and interruptions.
-4. Implement the Studio-defined directions, animation policies, roaming, banks and material effects; resolve genuinely infeasible behaviour explicitly with the user.
+3. Validate timing, alpha, roots/scale, audio and the lifecycle in GECK/FNV, including save/reload and interruptions. Haunting tests must include earliest/latest bounds, fixed delay, timer persistence and the specified waiting/sleeping/fast-travel behavior.
+4. Implement the Studio-defined directions, animation policies, roaming, banks, material effects and haunting-start scheduler. Consume the authored delay range and timer policy; retain the sampled deadline across game save/reload and apply the specified reset/cancellation events. Resolve genuinely infeasible behaviour explicitly with the user.
 5. Prove independent character registrations can coexist without path collisions, duplicate actors/items or orphan sounds.
 6. Package the exporter/runtime and verify fresh installation and removal. Investigate the self-contained conversion path against the validated reference implementation.
 
