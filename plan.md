@@ -37,7 +37,7 @@ Required:
 - Practical video-to-animation import: MP4, MOV, AVI and additional formats demonstrated by fixtures; opaque video supported normally.
 - Warmth, colour tint and vibrance controls, persisted and applied consistently in preview and exported PNGs.
 - Separate engine-material selections for defeated and hit effects: flesh/glass/cloth defeat choices and the requested Mr Handy metallic hit default for new projects.
-- A configurable enemy haunting-start delay range (for example 2–7 days), saved with the project and exported as desired FNV runtime behavior. Studio authoring is Step 14a; actual game scheduling remains later GECK/FNV integration.
+- A configurable enemy haunting-start delay range: default 1–3 days, with each bound adjustable from 4 hours to 10 days. Save it with the project and export desired FNV runtime behavior. Studio authoring is Step 14a; actual game scheduling remains later GECK/FNV integration.
 - Reliable save/reopen, migration, original-media preservation, export validation, cancellation and large-project handling.
 - Usable keyboard/narrow-window behaviour, current documentation, offline packaging and real-project acceptance.
 - A clear, versioned behaviour contract for the future GECK implementation.
@@ -197,13 +197,13 @@ Persist stable semantic selections and export them as desired runtime behaviour.
 
 ### [ ] Step 14a — Haunting-start delay range and runtime contract
 
-User addition, 6 October 2026: Sprite Forge must let the author choose a range for when an enemy begins haunting the player, for example **between 2 and 7 days**. Add clearly labeled earliest/latest delay controls to the encounter settings in Field test. The example is not an approved default for every project.
+User addition, 6 October 2026: Sprite Forge must let the author choose a range for when an enemy begins haunting the player. **Default authored range: 1–3 days. Allowed value for each bound: 4 hours through 10 days.** Add clearly labeled earliest/latest delay controls to the encounter settings in Field test, supporting hour-level precision so the lower limit is usable. A 2–7 day range is an example custom choice, not the default.
 
 Before implementation, settle the time unit and trigger semantics: proposed unit is **FNV in-game days**; define exactly what starts the countdown and whether "begins haunting" means spawning the enemy or activating an existing enemy's pursuit. Define when a new delay is sampled, its distribution/boundary rules, and cancellation/reset behavior around defeat, pickup, repack and redeployment. Record these choices rather than assuming a recurring haunt interval was requested.
 
-Implement validated minimum/maximum settings, dirty tracking, appropriate Undo/Redo, save/reopen and legacy migration. Reject negative/non-finite delays and minimum greater than maximum; equal bounds mean a fixed delay. Preserve legacy behavior for projects without an authored range. Export the range, unit, sampling policy and start/reset events as versioned semantic Source Pack metadata; do not invent game record IDs. Any Studio timer test uses an explicitly simulated clock; displaying these settings does not establish live FNV support.
+Implement validated minimum/maximum settings, dirty tracking, appropriate Undo/Redo, save/reopen and legacy migration. Both bounds must be finite and within 4 hours–10 days, and minimum must not exceed maximum; equal bounds mean a fixed delay. Preserve legacy behavior for projects without an authored range. Export the range, unit, sampling policy and start/reset events as versioned semantic Source Pack metadata; do not invent game record IDs. Any Studio timer test uses an explicitly simulated clock; displaying these settings does not establish live FNV support.
 
-**Gate:** authoring controls, validation/history, legacy migration, save/reopen and Source Pack metadata agree. Controlled-clock tests verify configured boundaries and fixed-delay behavior. The later FNV adapter has an explicit scheduling contract, including persistence across game save/reload and the intended effects of waiting, sleeping and fast travel. Actual mod integration and game acceptance remain section 8, after Studio v1.0.
+**Gate:** authoring controls, validation/history, legacy migration, save/reopen and Source Pack metadata agree. Verify the 1–3 day default, exact 4-hour/10-day permitted limits, rejection outside them, hour precision, configured sampling boundaries and fixed-delay behavior using controlled-clock tests. The later FNV adapter has an explicit scheduling contract, including persistence across game save/reload and the intended effects of waiting, sleeping and fast travel. Actual mod integration and game acceptance remain section 8, after Studio v1.0.
 
 ### [ ] Step 15 — Save and replacement reliability
 

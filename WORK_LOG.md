@@ -140,3 +140,5 @@ Step 4 complete. Scoped sources/tests/docs/package scripts are committed/pushed 
 ## 6 October 2026 — Plan addition: haunting-start delay
 
 Recorded the user's minimum/maximum haunting-start delay request (example 2–7 days) as required Step 14a, after engine-material settings and before save/export audits, preserving existing step numbering. Plan covers authoring/history/migration, save/reopen, Source Pack semantics and later FNV scheduling/save-reload validation. In-game days are proposed; clock unit, countdown start, spawn versus pursuit activation, sampling and reset/cancellation semantics must be settled during implementation. Extended Steps 15/16/18/19/20 and section 8 to carry the requirement through validation and future mod integration. Documentation reviewed; no source, build, package or FNV changes. Step 5 remains next; 14a is not implemented.
+
+User clarified the same request: default delay range is 1–3 days, and each editable bound is constrained to 4 hours–10 days. Updated Step 14a's controls, validation and acceptance gate to require hour precision, exact limits and the confirmed default. No implementation changes.
