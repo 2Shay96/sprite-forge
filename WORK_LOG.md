@@ -160,3 +160,7 @@ User confirmed guided Chrome Combat music original/WAV listening, then requested
 ## 6 October — Center standalone preview audio
 
 Recorded Chrome human real cues/loop seams, tones/gap pause/cancellation and animated hidden-tab passes. Fixed reported left-ear standalone music: hidden encounter listener position had been applied to workbench/gallery. Only encounter now uses player-relative panning. Native browser regression verifies centered workbench/gallery versus spatial encounter in Chrome/Edge; affected component/workflow and Trial checks pass. Updated acceptance/checklist/status/shared file. Step 5 human centered recheck/exported WAV/Edge checks pending.
+
+## 6 October — Step 5 signed off
+
+Recorded full Chrome guided listening and Edge all-pass confirmation, including extracted WAVs. Final user-requested View label changed to Preview settings with clear preview-only exports-unchanged note and volume help. Reference tests permit only exact approved text changes; Chrome/Edge shell/smoke, bundle and Trial integrity pass. Final HTML 5f99f58320c061b7ddfef2ee9467203effcb1c29f0587569dd7d493cc7a72780; Trial 479036e4e52065a8b118cf8ede064390def8e93e2cf8eb7c3b8d78443926b2a2. Prior ZIP preserved. Updated plan checkbox/status/shared context; Step 5 complete with missing real-project inputs tracked for Step 19. No Step 6 or mod/game changes. Scoped checked source/test/docs pushed and remotely verified before handoff.

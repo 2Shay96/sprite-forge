@@ -10,7 +10,7 @@ const referenceScripts=[...reference.matchAll(/<script>([\s\S]*?)<\/script>/g)];
 assert.equal(scripts[0][1].trim(),referenceScripts[0][1].trim(),'vendored JSZip matches supplied preview');
 assert.equal(scripts[1][1].split('/* MODULE:')[0].trim(),referenceScripts[1][1].split('/* MODULE:')[0].trim(),'embedded Sunny reference matches supplied preview');
 const shell=s=>s.replace(/\r\n/g,'\n').replace(/<script>[\s\S]*?<\/script>/g,'<script></script>');
-assert.equal(shell(text),shell(reference),'built shell, styles and embedded font bytes match supplied 0.7');
+assert.equal(shell(text),shell(require('./approved-preview-wording.cjs')(reference)),'built shell/styles/fonts match supplied 0.7 with approved preview wording');
 const fontFaces=[...text.matchAll(/@font-face\{[^}]*url\(data:font\/[^,]+,([A-Za-z0-9+/=]+)\)[^}]*\}/g)];assert.equal(fontFaces.length,4,'four offline fonts');
 assert.ok(!/url\(\s*["']?(?:https?:|\.\.\/assets)/i.test(text),'no remote or unembedded CSS asset URLs');
 const ids=[...text.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);assert.equal(ids.length,new Set(ids).size,'unique control IDs');

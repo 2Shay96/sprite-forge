@@ -4,7 +4,11 @@ Updated: 6 October 2026.
 
 ## Current task
 
-Step 5 automated acceptance checkpoint passed; human listening and visible-tab checks pending. See STEP5-ACCEPTANCE.md and STEP5-LISTENING-CHECKLIST.md. Fixed source-frame typing being overwritten by preview redraws. Supplied 0.7 appearance and all 19 workflow modules are maintained in sources; refreshed Trial package consistency passes. Step 5 remains open; Steps 6–21 remain pending. Real-media/listening acceptance is not established by the synthetic integration fixtures. Supplied preview, known-good baseline and old Trial package are preserved. No GECK/mod work occurred.
+Step 5 complete: automated checks and user-confirmed Chrome/Edge listening/visible-tab/exported-WAV checks pass. See STEP5-ACCEPTANCE.md and STEP5-LISTENING-CHECKLIST.md. Fixed source-frame typing being overwritten by preview redraws. Supplied 0.7 appearance and all 19 workflow modules are maintained in sources; refreshed Trial package consistency passes. Steps 1–5 complete; Steps 6–21 remain pending. Real-media/listening acceptance is not established by the synthetic integration fixtures. Supplied preview, known-good baseline and old Trial package are preserved. No GECK/mod work occurred.
+
+## Final Step 5 sign-off — 6 October
+
+User completed Chrome guided checks and reported Edge all pass. Real cue original/converted comparisons, both loop seams, Listen/Pause/Resume, centered standalone audio, tone scheduling/gap pause/Stop cancellation, actual hidden-tab audio/animation pause and freshly extracted WAV listening accepted. Renamed View to Preview settings and clarified Preview only — exports stay unchanged, including the volume help reference. Exact reference/layout tests allow only these approved text substitutions; Chrome/Edge three-width shell and smoke, bundle and refreshed Trial integrity PASS. No behavior/schema changes in this final wording edit. Final HTML 1,804,692 bytes / SHA-256 5f99f58320c061b7ddfef2ee9467203effcb1c29f0587569dd7d493cc7a72780; Trial 1,215,055 bytes / SHA-256 479036e4e52065a8b118cf8ede064390def8e93e2cf8eb7c3b8d78443926b2a2. Receipts: evidence/step5/final-wording-chrome, final-wording-edge, final-wording-package. Previous ZIP preserved. Human playback acceptance used preceding centered-audio build; final edit changes only wording. Missing Emet/latest authored project/distinct idle/attack media stay Step 19 dependencies; no Step 6 or mod/game work begun.
 
 ## Step 5 listening feedback and fix
 
@@ -14,7 +18,7 @@ User confirmed guided Chrome Combat music original/exported WAV listening works 
 
 Chrome: 23 passing mandatory/browser/real-media suites across final-chrome-full and passed-chrome-formats receipts; Edge: 7 passing browser/real-media suites across final-edge-full and passed-edge-formats. Trial release integrity passes after preserving/repackaging Step 4 artifacts. Latest Listen-toggle HTML 8c8d03aee4c55d78320372a5666a3b253d4bba4a0e7c859cf78b16d96c684660; Trial ZIP 2562486a2a452eafd17cd30f4339b9f7aa48bd90d305a00cdac3cde850a3cfc4. Initial full-direction receipts retain their earlier artifact hash. No schema change. Search of user media folders found no latest authored project, Emet or distinct idle/attack media. Source originals are unchanged. See STEP5-ACCEPTANCE.md for evidence distinctions and full local receipt paths.
 
-Next action: collect the user's Chrome/Edge listening and actual-tab-visibility results using STEP5-LISTENING-CHECKLIST.md, resolve any failures and close Step 5's gate before Step 6.
+Next action: user selection of Step 6, the bounded offline video decoder investigation.
 
 ## Shared integration context
 
@@ -82,7 +86,7 @@ Preserved unrelated pre-existing ALPHA-HANDOFF.md modification and untracked CLO
 
 ## Next action
 
-Collect the user's Chrome/Edge results from STEP5-LISTENING-CHECKLIST.md, resolve failures and sign off Step 5 before Step 6.
+Step 5 complete. Next: user selection of Step 6 for offline video decoder investigation.
 
 ## Latest human acceptance — 6 October
 
@@ -93,3 +97,7 @@ Chrome human follow-up: remaining Defeated sound / On defeat / Summon original/e
 ## Centered standalone audio — 6 October
 
 User confirmed Chrome tone/gap/pause/Stop and animated hidden-tab checks passed, then reported left-ear music on main Play. Cause: standalone/gallery advance positioned audio against the hidden encounter player. Fixed src/studio.js to co-locate listener with actor outside encounter; encounter retains spatial audio. Exposed native pan/gain diagnostics and added real-audio assertions for centered workbench/gallery and panned encounter in both browsers. Chrome real-audio/bank-controls/source-facing and Edge real-audio/workflow PASS; Trial integrity PASS. Latest HTML 7483b29bef54cbe74668d9f2b291655f321e8872ec67d02e3664d7d6b34fc276 (1,804,659 bytes); Trial ca9a2e0d9b5c4b6925ab48da07dd5448888a5679e2f19dcd76b622d65887954d. Receipts evidence/step5/center-chrome, center-edge, center-package. Previous Trial ZIP preserved. Next: human centered-playback recheck, extracted WAV listening and Edge checks. Step 5 remains open; no schema/mod change.
+
+Chrome centered-audio fix accepted by user on 6 October after refresh/reopen. Standalone preview now plays through both ears. Next: extracted Source Pack WAV listening, then Edge human checklist; Step 5 stays open.
+
+Chrome human checklist complete on 6 October: user confirms all four freshly exported/extracted Source Pack WAVs play and sound correct. Next action: Edge human checklist using the same maintained HTML/listening project; then resolve any failure or sign off Step 5.

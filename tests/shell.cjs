@@ -18,7 +18,7 @@ async function contracts(page,html){await page.setContent(staticShell(html));ret
   const captures=[];
   for(const [label,file] of [['reference','Claude outputs/SpriteForge-0.7-preview.html'],['rebuilt','SpriteForge.html']]){
    page=await newPage();await page.setViewportSize(viewport);
-   await page.setContent(staticShell(read(file)));await page.evaluate(async()=>{await Promise.all([...document.fonts].map(f=>f.load()));await document.fonts.ready;});
+   await page.setContent(staticShell(label==='reference'?require('./approved-preview-wording.cjs')(read(file)):read(file)));await page.evaluate(async()=>{await Promise.all([...document.fonts].map(f=>f.load()));await document.fonts.ready;});
    const fonts=await page.evaluate(()=>[...document.fonts].map(f=>({family:f.family,weight:f.weight,status:f.status})));
    assert.equal(fonts.length,4);assert.ok(fonts.every(f=>f.status==='loaded'),'embedded fonts load '+label);
    const png=await page.screenshot({path:Test.outputPath(`${viewport.width}-${label}.png`),fullPage:true,animations:'disabled'});captures.push({label,sha256:hash(png),fonts});await page.close();

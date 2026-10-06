@@ -1,6 +1,6 @@
 # Step 5 acceptance checkpoint — 6 October 2026
 
-Status: automated checkpoint passed; human listening/visible-tab acceptance pending. Step 5 remains unchecked and Step 6 has not started.
+Status: Step 5 complete on 6 October. User completed guided Chrome checks and reported Edge all pass. Historical receipts below retain their original artifact identities/pending notes. Step 6 has not started.
 
 Initial tested Windows 0.7.0 HTML: 1,803,511 bytes, SHA-256 `d2fcabbfcba3f9cd6fb9bd798b1deb1ad28cdc93e8468013b42cee0611d25032`. Project schema 7 and Source Pack schema 6 are unchanged. Chrome 154.0.8037.98 and Edge 154.0.4258.53; Playwright 1.62.1; Node 24.19.0. All browser runs use fresh isolated, offline headless profiles. They do not refresh a user's project tab.
 
@@ -42,3 +42,7 @@ The user agreed to check playback. Complete STEP5-LISTENING-CHECKLIST.md in Chro
 ## Centered standalone audio follow-up
 
 Chrome human checks now pass tone scheduling/gap pause/Stop and actual animated-preview tab hiding. User reported left-ear music on standalone transport. Corrected positioning: standalone workbench/state gallery center audio; encounter keeps actor/player-relative panning. Real browser checks inspect actual StereoPanner values (0 outside encounter, nonzero in encounter) in Chrome/Edge. Chrome real-audio/bank-controls/source-facing, Edge real-audio/workflow and Trial integrity PASS. Latest HTML SHA-256 7483b29bef54cbe74668d9f2b291655f321e8872ec67d02e3664d7d6b34fc276, 1,804,659 bytes. Trial SHA-256 ca9a2e0d9b5c4b6925ab48da07dd5448888a5679e2f19dcd76b622d65887954d, 1,215,056 bytes. Receipts evidence/step5/center-chrome, center-edge, center-package. Previous Trial ZIP preserved under _backup-0.6.2/trial-before-centered-audio-2026-10-06. Human recheck, extracted WAV listening and Edge checklist pending. No source media/schema/mod changes.
+
+## Final sign-off and preview wording
+
+Chrome guided checks and Edge full human checklist passed: real cues/seams, Listen pause/resume, centered standalone preview, tones/gap pause/Stop, actual hidden tabs and extracted WAVs. Final wording-only change renames View to Preview settings, uses Preview only — exports stay unchanged and updates speaker-volume help. Tests preserve reference pixel equality with precisely those user-approved text replacements. Chrome bundle/shell/smoke, Edge shell/smoke and Trial integrity PASS (evidence/step5/final-wording-chrome, final-wording-edge, final-wording-package). Final HTML SHA-256 5f99f58320c061b7ddfef2ee9467203effcb1c29f0587569dd7d493cc7a72780 (1,804,692 bytes); Trial 479036e4e52065a8b118cf8ede064390def8e93e2cf8eb7c3b8d78443926b2a2 (1,215,055 bytes). Previous ZIP preserved under _backup-0.6.2/trial-before-preview-wording-2026-10-06. Human listening accepted preceding centered-audio build; this final edit changes no playback behavior. Missing real inputs remain Step 19 dependencies. Step 5 checked; Step 6 awaits user selection.

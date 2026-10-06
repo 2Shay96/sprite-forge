@@ -1,8 +1,8 @@
 # Step 5 listening and visible-browser checks
 
-Prepared 6 October 2026. Pending human results; Step 5 is not signed off yet.
+Completed 6 October 2026. User passed guided Chrome checks and reported Edge all pass. Step 5 signed off. Historical progress notes below retain their original pending status.
 
-Use this checkout's **SpriteForge.html** (0.7.0), SHA-256 `7483b29bef54cbe74668d9f2b291655f321e8872ec67d02e3664d7d6b34fc276`.
+Use this checkout's **SpriteForge.html** (0.7.0), SHA-256 `5f99f58320c061b7ddfef2ee9467203effcb1c29f0587569dd7d493cc7a72780`.
 Open it in Windows Chrome, then repeat in Edge. No server or internet connection is needed.
 Choose **Open project** and load `evidence/step5/final-chrome-audio/salvatore-listening.spriteforge.zip` from the same folder.
 This prepared project has three real Salvatore frames and four original recordings. It is an acceptance fixture, not a recovered user-authored project.
@@ -25,3 +25,9 @@ Human follow-up, 6 October (Chrome, rebuilt Listen-toggle app): user refreshed/r
 Human follow-up, 6 October (Chrome): user confirmed original/exported WAV comparison for Defeated sound, On defeat and Summon / deployment, plus defeated-loop seam, all pass. All four real cue comparisons and both real loop seams now pass in Chrome. Remaining: spaced test tones, animated-preview actual hidden-tab behavior, extracted Source Pack WAV listening and Edge human checks.
 
 Human follow-up, 6 October (Chrome): spaced test tones, pause during gap, Stop cancellation and animated-preview hidden-tab pause all pass. User then reported music panned left in standalone preview. Fixed Studio positioning to center standalone/state gallery audio and retain spatial panning only in encounter mode. Native StereoPanner values verified in Chrome/Edge; human recheck pending. Remaining final checks: extracted Source Pack WAV listening and Edge human checklist.
+
+Human follow-up, 6 October (Chrome): user confirmed refreshed standalone preview music now plays through both ears; centered-audio fix accepted. Remaining human checks: extracted Source Pack WAV listening and Edge checklist.
+
+Human follow-up, 6 October (Chrome Source Pack): user exported/extracted the prepared project and confirmed all four exported WAVs play and sound correct. Chrome human checklist complete, including real cue comparisons/seams, toggle, actual hidden-tab audio/animation, test tones/gap pause/cancellation, centered preview and extracted WAVs. Edge human checklist remains pending; Step 5 not yet signed off.
+
+Final human result, 6 October: Edge all pass, including cue comparisons/seams/toggle, centered preview, actual hidden tabs, test tones/gap pause/cancellation and freshly exported WAVs. Chrome/Edge human checklist complete. Final user-requested wording change: View → Preview settings; note Preview only — exports stay unchanged. Wording-only rebuild verified in both browsers; preceding centered-audio build carries human playback acceptance. Step 5 signed off.

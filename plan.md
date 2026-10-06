@@ -1,6 +1,6 @@
 # Sprite Forge Studio — plan to v1.0
 
-Updated: 6 October 2026. Status: Steps 1–4 complete. Supplied 0.7 appearance/workflow is maintained in modular sources; Trial package consistency passes. Step 5 automated checkpoint passed; human listening/visible-tab gate pending. Steps 6–21 remain pending. Checked progress is backed up on public GitHub main.
+Updated: 6 October 2026. Status: Steps 1–5 complete. Supplied 0.7 appearance/workflow is maintained in modular sources; Trial package consistency passes. Step 5 automated and human Chrome/Edge listening/visible-tab checks passed. Steps 6–21 remain pending. Checked progress is backed up on public GitHub main.
 
 ## 1. Product direction and authority
 
@@ -127,9 +127,9 @@ Bring across `steps`, `roster` and reviewed changes to `app`, `studio` and `acti
 
 Completed 6 October: steps/roster and reviewed app/studio/action-control changes integrated into 19-module build. Initial recovery rebuilt the supplied preview byte for byte; then corrected inherited export tool metadata to 0.7.0 (schemas unchanged). Chrome/Edge offline real-control fixture tests pass routing, roster/state ownership, clip timing, sound, test kits and save/reopen/Source Pack downloads. All 16 mandatory suites and package checks pass. Trial docs/licenses are current; preserved old package and exact new hashes are recorded above. Full real-media/listening acceptance remains Step 5.
 
-### [ ] Step 5 — Baseline browser and listening acceptance
+### [x] Step 5 — Baseline browser and listening acceptance
 
-6 October checkpoint: automated mandatory, native browser and located real Salvatore media suites pass in Chrome/Edge. Fixed source-frame typing overwritten by continuous redraws; rebuilt/repackaged exact tested HTML. See STEP5-ACCEPTANCE.md for receipts and STEP5-LISTENING-CHECKLIST.md for the remaining human gate. User-folder search found no latest authored archive, Emet or distinct real idle/attack recordings. Step stays unchecked pending listening and actual visible-tab checks; missing real-project inputs remain tracked for Step 19.
+6 October checkpoint: automated mandatory, native browser and located real Salvatore media suites pass in Chrome/Edge. Fixed source-frame typing overwritten by continuous redraws; rebuilt/repackaged exact tested HTML. See STEP5-ACCEPTANCE.md for receipts and STEP5-LISTENING-CHECKLIST.md for the remaining human gate. User-folder search found no latest authored archive, Emet or distinct real idle/attack recordings. Completed 6 October: user passed the full guided Chrome checklist and reported Edge all pass, including freshly exported WAVs. Listen/Pause/Resume and centered standalone audio fixes accepted. Preview settings wording clarified and rebuilt; affected Chrome/Edge shell/smoke and Trial integrity checks pass. Missing real-project inputs remain tracked for Step 19.
 
 Test the rebuilt HTML in Windows Chrome and Edge. Exercise main versus extra imports, timing, placement, corrections, directions, source-facing, action interruption, banks, save/reopen and export. Use ALPHA-HANDOFF.md as a behaviour checklist with updated click paths. Test pause/hidden-tab audio and listen to real playback. Log browser versions and exact build identity.
 
@@ -299,4 +299,4 @@ This later work needs its own bounded plan after inspecting actual mod/runtime i
 
 ## 9. Immediate next action
 
-Steps 1–4 are complete; evidence is recorded in BASELINE-ACCEPTANCE.md, tests/README.md and STATUS.md. Review section 4.2 for outstanding real-media inputs, then finish **Step 5** with the prepared listening/actual hidden-tab checklist (STEP5-LISTENING-CHECKLIST.md). Automated Chrome/Edge and real Salvatore receipts are in STEP5-ACCEPTANCE.md. Complete that gate before the video decoder investigation. No later step starts automatically.
+Steps 1–5 are complete; evidence is recorded in BASELINE-ACCEPTANCE.md, tests/README.md and STATUS.md. Review section 4.2 for outstanding real-media inputs, Step 5 is signed off in STEP5-ACCEPTANCE.md and STEP5-LISTENING-CHECKLIST.md. Next select **Step 6** for the bounded offline video decoder investigation. No later step starts automatically.

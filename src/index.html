@@ -74,9 +74,9 @@
     <div class="stage-tools">
       <div class="zoom"><label for="zoom">Zoom</label><input id="zoom" type="range" min="25" max="300" value="100"><output id="zoom-value">100%</output></div>
       <details class="viewpop" id="view-options">
-        <summary title="Preview-only display settings">View</summary>
+        <summary title="Preview-only display settings">Preview settings</summary>
         <div class="viewpop-body">
-          <span class="scope preview">Preview only · never exported</span>
+          <span class="scope preview">Preview only — exports stay unchanged</span>
           <label>Preview background<select id="background" data-setting><option value="checker">Checkerboard</option><option value="light">Warm light</option><option value="dark">Deep dark</option><option value="scene">Neutral scene</option><option value="pink">Bright pink / purple</option><option value="yellow">Bright yellow</option></select></label>
           <label class="check"><input id="showReference" type="checkbox" checked data-setting> Height reference (Sunny ≈ 121.6 units)</label>
           <label>Speaker volume <span id="volume-value">70%</span><input id="preview-volume" type="range" min="0" max="100" value="70"></label>
@@ -340,7 +340,7 @@
     <small>Attack/hit cues trigger on actual encounter events. Idle and roam share their quip timer. Leaving a state cancels its voices and queued repeats.</small>
   </details>
   <details class="adv"><summary>Sound activity</summary><pre id="audio-activity">No activity.</pre></details>
-  <small class="foot-note">Speaker volume (View, on the preview) and take mute are preview only. WAV export includes trim and gain. Crossfades and effects come later.</small>
+  <small class="foot-note">Speaker volume (Preview settings, on the preview) and take mute are preview only. WAV export includes trim and gain. Crossfades and effects come later.</small>
   <footer class="panel-foot"><button class="next primary" data-next="states">Next: field test</button></footer>
 </section>
 
