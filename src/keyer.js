@@ -10,7 +10,9 @@ SF.Keyer = (() => {
     options($('correction-view'),views.map(v=>({value:v,label:v==='S'?'Source/front · also used by generated views':v+(clip.directions?.[v]?' · imported':' · missing view (review)')})),dir);
     const t=C.track(p(),id(),dir),linked=!!t.link,available=C.frames(p(),id(),dir).length>0,keys=C.resolvedTrack(p(),id(),dir).keys,readonly=app.busy||!has||linked||!available||!!t.review.length,nextSignature=[id(),dir,index,C.revision(p()),JSON.stringify(SF.Placement.resolve(p(),id()))].join('|');
     if(signature!==nextSignature){signature=nextSignature;cleanDraft();for(const f of [...C.fields,'interpolation'])$('correction-'+f).value=draft.key[f];$('correction-scale-slider').value=draft.key.scalePercent;}
-    $('correction-frame').value=index;$('correction-frame').max=Math.max(0,clip.frames.length-1);$('correction-frame').disabled=app.busy||!has;
+    // Continuous preview redraws must not overwrite a source index being typed.
+    if(document.activeElement!==$('correction-frame'))$('correction-frame').value=index;
+    $('correction-frame').max=Math.max(0,clip.frames.length-1);$('correction-frame').disabled=app.busy||!has;
     $('correction-view').disabled=app.busy||!has;$('correction-enabled').checked=t.enabled;$('correction-enabled').disabled=app.busy||!has;
     $('correction-link').checked=linked;$('correction-link').disabled=app.busy||!has||dir==='S'||!available;
     for(const f of [...C.fields,'interpolation'])$('correction-'+f).disabled=readonly;$('correction-scale-slider').disabled=readonly;

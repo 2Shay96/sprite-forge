@@ -4,13 +4,19 @@ Updated: 6 October 2026.
 
 ## Current task
 
-Step 4 workflow integration complete. Supplied 0.7 appearance and all 19 workflow modules are maintained in sources; refreshed Trial package consistency passes. Steps 5–21 remain pending. Real-media/listening acceptance is not established by the synthetic integration fixtures. Supplied preview, known-good baseline and old Trial package are preserved. No GECK/mod work occurred.
+Step 5 automated acceptance checkpoint passed; human listening and visible-tab checks pending. See STEP5-ACCEPTANCE.md and STEP5-LISTENING-CHECKLIST.md. Fixed source-frame typing being overwritten by preview redraws. Supplied 0.7 appearance and all 19 workflow modules are maintained in sources; refreshed Trial package consistency passes. Step 5 remains open; Steps 6–21 remain pending. Real-media/listening acceptance is not established by the synthetic integration fixtures. Supplied preview, known-good baseline and old Trial package are preserved. No GECK/mod work occurred.
+
+## Step 5 checkpoint
+
+Chrome: 23 passing mandatory/browser/real-media suites across final-chrome-full and passed-chrome-formats receipts; Edge: 7 passing browser/real-media suites across final-edge-full and passed-edge-formats. Trial release integrity passes after preserving/repackaging Step 4 artifacts. Exact HTML d2fcabbfcba3f9cd6fb9bd798b1deb1ad28cdc93e8468013b42cee0611d25032; Trial ZIP 31766fcb50a05d0fda5dec509fbacb40a301ad77b858a8eeaef2d776a75a7131. No schema change. Search of user media folders found no latest authored project, Emet or distinct idle/attack media. Source originals are unchanged. See STEP5-ACCEPTANCE.md for evidence distinctions and full local receipt paths.
+
+Next action: collect the user's Chrome/Edge listening and actual-tab-visibility results using STEP5-LISTENING-CHECKLIST.md, resolve any failures and close Step 5's gate before Step 6.
 
 ## Shared integration context
 
-Created C:\Users\Shadow\Desktop\VibeCoding\FNV-SPRITE-FORGE-INTEGRATION-PLAN.md on 6 October after finding the existing mod-specific pipeline plan but no root shared document. It links the actual Studio checkout and mod handoff, tracks Studio capabilities versus user-selected mod-v1.0 support, records haunting defaults/limits and timer questions, and gives both agents an update/acknowledgement log. Mod status is attributed to its existing dated documents, not fresh game tests; Opus acknowledgement is pending. Updated root PROJECTS.md for discoverability and corrected its old Studio checkout path. No mod-owned files were changed.
+Created C:\Users\Shadow\Desktop\VibeCoding\FNV-SPRITE-FORGE-INTEGRATION-PLAN.md on 6 October after finding the existing mod-specific pipeline plan but no root shared document. It links the actual Studio checkout and mod handoff, tracks Studio capabilities versus user-selected mod-v1.0 support, records haunting defaults/limits and timer questions, and gives both agents an update/acknowledgement log. Mod status is attributed to its existing dated documents, not fresh game tests; Opus acknowledged on 6 October and recorded the user-selected standalone Salvatore mod-v1.0 subset; broader adapter capabilities are deferred for that mod release. Updated root PROJECTS.md for discoverability and corrected its old Studio checkout path. No mod-owned files were changed.
 
-Read/update this shared file during related sessions after meaningful scope/schema/status changes. It is a local canonical file outside Git; it does not automatically notify Opus or sync to GitHub. Studio's public source checkpoint includes its own plan/status links only; private mod context remains in the shared workspace document. Step 5 has not begun.
+Read/update this shared file during related sessions after meaningful scope/schema/status changes. It is a local canonical file outside Git; it does not automatically notify Opus or sync to GitHub. Studio's public source checkpoint includes its own plan/status links only; private mod context remains in the shared workspace document. Step 5 has begun; automated checkpoint and human checklist are available.
 
 ## Step 4 changes and evidence
 
@@ -58,13 +64,13 @@ Exact Step 2 baseline: SpriteForge.html 0.6.2, SHA-256 93ed65579cf1afb7d542f9975
 
 ## Tracked limitations
 
-- Salvatore original media located at C:\Users\Shadow\Desktop\VibeCoding\fnv\source\Salvatore: eight directions × 70 PNGs, all 1080²; four referenced MP3/WAV files present. Set SPRITE_FORGE_SALVATORE / SPRITE_FORGE_SALVATORE_DIRECTIONS explicitly. Read-only inventory of all 560 PNG headers/hashes; no import/export/listening acceptance claimed. Emet, latest user project, distinct idle/attack/voice and video inputs remain unresolved in inspected locations; see plan.md section 4.2. Older browser/milestone2 scripts still need assertion review before Step 5.
+- Salvatore original media located at C:\Users\Shadow\Desktop\VibeCoding\fnv\source\Salvatore: eight directions × 70 PNGs, all 1080²; four referenced MP3/WAV files present. Set SPRITE_FORGE_SALVATORE / SPRITE_FORGE_SALVATORE_DIRECTIONS explicitly. Current offline Chrome/Edge import/save/reopen/export of all 560 frames and native conversion of four original recordings pass; human listening remains pending. Emet, latest user project, distinct idle/attack/voice and video inputs remain unresolved in inspected locations; see plan.md section 4.2. Obsolete browser/milestone2 scripts remain historical; current Step 5 suites use reviewed 0.7 controls.
 - Trial consistency now passes after Step 4 refresh; old package is preserved. Missing packaged artifacts on a fresh checkout are BLOCKED until generated; default suites require no Trial package or historical archives. Full fresh-package release acceptance remains Steps 20–21.
-- Full browser workflow, listening, latest authored project, real idle/attack recordings and required video fixture acceptance remain outstanding later-plan work.
+- Current offline workflow, native image/GIF, correction/placement/action and real Salvatore frame/audio browser checks pass. Human listening/actual hidden tabs remain Step 5; latest authored project, Emet and real idle/attack recordings remain missing dependencies. Video acceptance belongs to later steps.
 
 ## GitHub checkpoint
 
-Confirmed public repository https://github.com/2Shay96/sprite-forge; main tracks origin/main and CLI authentication works. Latest verified remote planning checkpoint before shared-context work is a574de9c5a054fd7d413099eb73819f80b6ec0ff; fresh fetch showed 0 ahead / 0 behind. GitHub connector read access and write permission were verified again without opening a browser/Desktop. Scoped Studio plan/status links are pushed and verified before session completion; the new commit need not contain its own SHA. The root shared file/PROJECTS.md are local, outside Git, and not part of that public commit.
+Confirmed public repository https://github.com/2Shay96/sprite-forge; main tracks origin/main and CLI authentication works. Latest verified remote checkpoint before Step 5 is 215311db965f581a358bad5cfdff32360dbbaf03; fresh fetch showed 0 ahead / 0 behind. GitHub connector read access and write permission were verified again without opening a browser/Desktop. Scoped Step 5 source/tests/acceptance/checklist/status documentation is pushed and verified before session completion; the new commit need not contain its own SHA. The root shared file/PROJECTS.md are local, outside Git, and not part of that public commit.
 
 Earlier connector content backup remains on checkpoint/windows-step2-media-2026-10-05 at 90ddca5c7cb7c1ba4e481b4d2bff8154191d8547, with tree equality verified against local 67d469d. CLI authentication now works; the original main-branch history backup is complete. No force push, merge or history rewrite occurred.
 
@@ -72,4 +78,4 @@ Preserved unrelated pre-existing ALPHA-HANDOFF.md modification and untracked CLO
 
 ## Next action
 
-Await the user's selection of Step 5: full Windows browser/real-media and listening acceptance. Confirm required original inputs from plan.md section 4.2 before claiming their checks pass. No Step 5 work has begun.
+Collect the user's Chrome/Edge results from STEP5-LISTENING-CHECKLIST.md, resolve failures and sign off Step 5 before Step 6.

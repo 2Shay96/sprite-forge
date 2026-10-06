@@ -1,5 +1,11 @@
 # Portable test entry point
 
+## Step 5 acceptance additions (6 October 2026)
+
+`--browser` now includes `acceptance` and `browser-media`: native browser draft/commit/interpolation, pointer drag/Undo, independent placement shapes, action pause/return/queue, image codecs and native animated GIF extraction. `--real-media` explicitly selects `salvatore-directions` and `real-audio`; configure both `SPRITE_FORGE_SALVATORE_DIRECTIONS` and `SPRITE_FORGE_SALVATORE`. The latter reads four recordings under assets/sounds. These suites never modify original media. Salvatore's full 560-frame round trip has a 300-second bound; other suites retain 180 seconds.
+
+Example: `node tests/run.cjs --browser --real-media`. Set `SPRITE_FORGE_BROWSER_CHANNEL=msedge` to repeat with Edge. Real audio uses native AudioContext and OfflineAudioContext, validates original/archive bytes and converted WAV metadata, and prepares a local listening project. Sound audibility and real tab visibility remain human checks in [STEP5-LISTENING-CHECKLIST.md](../STEP5-LISTENING-CHECKLIST.md). Headless clock checks do not establish listening acceptance; results retain humanListening=false until a human reports their checks. Detailed scope and missing-media dependencies are in STEP5-ACCEPTANCE.md.
+
 Run from the project directory with Node.js 22 or newer:
 
 ```powershell
