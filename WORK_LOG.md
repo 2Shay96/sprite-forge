@@ -156,3 +156,7 @@ Fixed native-browser regression where continuous preview redraws replaced the so
 ## 6 October 2026 — Step 5 Listen usability feedback
 
 User confirmed guided Chrome Combat music original/WAV listening, then requested intuitive pause on repeated Listen clicks. Implemented per-recording original/exported audition Listen/Pause/Resume toggles, same-voice resume without reconversion/restart, Stop/end reset and accessible pressed state. Added real-browser regression checks in real-audio. 16 mandatory regressions, six browser/audio suites in each Chrome/Edge and Trial integrity PASS. Latest HTML 8c8d03aee4c55d78320372a5666a3b253d4bba4a0e7c859cf78b16d96c684660; Trial 2562486a2a452eafd17cd30f4339b9f7aa48bd90d305a00cdac3cde850a3cfc4. Preserved previous package. Updated checklist/status/shared context; human remaining checks and Step 5 gate still pending. No Step 6 or mod/game edits.
+
+## 6 October — Center standalone preview audio
+
+Recorded Chrome human real cues/loop seams, tones/gap pause/cancellation and animated hidden-tab passes. Fixed reported left-ear standalone music: hidden encounter listener position had been applied to workbench/gallery. Only encounter now uses player-relative panning. Native browser regression verifies centered workbench/gallery versus spatial encounter in Chrome/Edge; affected component/workflow and Trial checks pass. Updated acceptance/checklist/status/shared file. Step 5 human centered recheck/exported WAV/Edge checks pending.

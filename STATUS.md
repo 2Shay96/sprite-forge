@@ -83,3 +83,13 @@ Preserved unrelated pre-existing ALPHA-HANDOFF.md modification and untracked CLO
 ## Next action
 
 Collect the user's Chrome/Edge results from STEP5-LISTENING-CHECKLIST.md, resolve failures and sign off Step 5 before Step 6.
+
+## Latest human acceptance — 6 October
+
+Chrome: user confirmed new Listen/Pause/Resume works, Combat music loop has no audible gaps, and actual tab switching pauses audio without automatic resume. These checks passed on refreshed app/reopened project. Next: listen to original/exported versions of Defeated sound, On defeat and Summon / deployment; check defeated loop seam. Remaining checklist and Edge listening still pending; Step 5 stays unchecked.
+
+Chrome human follow-up: remaining Defeated sound / On defeat / Summon original/exported comparisons and defeated-loop seam all passed. All four real cue comparisons and both loop seams passed. Next: test-tone gap/pause/cancellation and animated-preview actual hidden-tab check; extracted WAV listening and Edge remain pending.
+
+## Centered standalone audio — 6 October
+
+User confirmed Chrome tone/gap/pause/Stop and animated hidden-tab checks passed, then reported left-ear music on main Play. Cause: standalone/gallery advance positioned audio against the hidden encounter player. Fixed src/studio.js to co-locate listener with actor outside encounter; encounter retains spatial audio. Exposed native pan/gain diagnostics and added real-audio assertions for centered workbench/gallery and panned encounter in both browsers. Chrome real-audio/bank-controls/source-facing and Edge real-audio/workflow PASS; Trial integrity PASS. Latest HTML 7483b29bef54cbe74668d9f2b291655f321e8872ec67d02e3664d7d6b34fc276 (1,804,659 bytes); Trial ca9a2e0d9b5c4b6925ab48da07dd5448888a5679e2f19dcd76b622d65887954d. Receipts evidence/step5/center-chrome, center-edge, center-package. Previous Trial ZIP preserved. Next: human centered-playback recheck, extracted WAV listening and Edge checks. Step 5 remains open; no schema/mod change.

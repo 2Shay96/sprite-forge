@@ -142,7 +142,9 @@ SF.Studio = (() => {
     while(accumulator>=1/60&&steps<300){sim.step(1/60,keys,mode==='encounter',sting,release);if(mode!=='workbench')processVisualEvents();accumulator-=1/60;steps++;}
     if(mode!=='workbench')playback?.tick(p(),playbackClock());
     if(transition==='release'&&sim.model.state==='deploying'&&sim.model.stateAge>Math.max(.7,release)){galleryState='companion_combat';sim.gallery('companion_combat');resetPlayback();transition=null;}
-    const state=currentState();SF.Audio.sync(p(),state,sim.model.stateAge,true);processAudioEvents();SF.Audio.position(sim.model.actor,sim.model.player,orbit);
+    const state=currentState();SF.Audio.sync(p(),state,sim.model.stateAge,true);processAudioEvents();
+    // Only the encounter has a spatial listener; standalone previews stay centered.
+    SF.Audio.position(sim.model.actor,mode==='encounter'?sim.model.player:sim.model.actor,orbit);
     const v=pose(),key=[state,sim.model.entryId,v?.clipId,v?.phase,v?.serial].join('|');if(previousState!==state||key!==playbackKey){previousState=state;playbackKey=key;app.update();}else if(Math.floor(sim.model.timeSeconds*5)!==lastReadout){lastReadout=Math.floor(sim.model.timeSeconds*5);readout();$('state-status').textContent=mode==='encounter'?`Encounter · ${SF.Simulator.labels[state]}`:mode==='gallery'?`State · ${SF.Simulator.labels[state]}`:'Tuning';}
   }
   function place(event){if(mode!=='encounter'||sim.model.state!=='stored')return;const box=$('preview').getBoundingClientRect(),g=SF.Renderer.sceneGeometry;if(!g)return;if(!app.playing)SF.Audio.stop();sim.deploy({x:(event.clientX-box.left-g.ox)/g.unit,z:(event.clientY-box.top-g.oy)/(g.unit*.6)});processVisualEvents();SF.Audio.sync(p(),sim.model.state,0,app.playing);app.update();}

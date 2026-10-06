@@ -19,6 +19,13 @@ const original=Object.fromEntries(inputs.map(([,name])=>[name,hash(fs.readFileSy
  }
  checks.push('Four original MP3/WAV files decoded natively; source SHA-256 retained');
  const decoded=await p.evaluate(()=>Object.fromEntries(Object.entries(SF.Store.project.audio).map(([slot,b])=>{const a=b.takes[0];return [slot,{duration:a.buffer.duration,sampleRate:a.buffer.sampleRate,channels:a.buffer.numberOfChannels,sha256:a.sha256}];})));
+ // Standalone transport must not inherit the hidden encounter's listener position.
+ await p.click('#play');await p.waitForFunction(()=>SF.Audio.activeVoices.some(v=>v.slot==='music_loop'));await p.waitForTimeout(100);
+ assert.equal(await p.evaluate(()=>SF.Audio.activeVoices.find(v=>v.slot==='music_loop').pan),0);
+ await p.click('#play');await p.click('[data-tab=states]');await p.click('#play');await p.waitForFunction(()=>SF.Audio.activeVoices.some(v=>v.slot==='music_loop'));assert.equal(await p.evaluate(()=>SF.Audio.activeVoices.find(v=>v.slot==='music_loop').pan),0);
+ await p.click('#encounter-mode');await p.waitForFunction(()=>SF.Audio.activeVoices.some(v=>v.slot==='music_loop'&&Math.abs(v.pan)>.1));
+ await p.click('#play');await p.click('[data-tab=audio]');await p.click('#audio-stop');
+ checks.push('Standalone and gallery music use centered native StereoPanner; encounter retains actual positional panning');
  // Each Listen control pauses/resumes its own audition without restarting or reconverting.
  await p.locator('#cue-list .cue').filter({has:p.getByText('Combat music',{exact:true})}).click();
  for(const kind of ['source','converted']){const button=p.locator('#audio-'+kind),label=kind==='source'?'original':'exported WAV';await button.click();await settle();await p.waitForFunction(()=>SF.Audio.auditionActive&&SF.Audio.contextState==='running');assert.equal(await button.textContent(),'Pause: '+label);assert.equal(await button.getAttribute('aria-pressed'),'true');await button.click();await p.waitForFunction(()=>SF.Audio.contextState==='suspended');assert.equal(await button.textContent(),'Resume: '+label);const clock=await p.evaluate(()=>SF.Audio.clock);await p.waitForTimeout(200);assert.ok(Math.abs((await p.evaluate(()=>SF.Audio.clock))-clock)<.02);await button.click();await p.waitForFunction(()=>SF.Audio.contextState==='running');assert.equal(await button.textContent(),'Pause: '+label);assert.equal(await p.evaluate(()=>SF.Audio.activeVoices.length),1);await p.click('#audio-stop');await p.waitForFunction(()=>!SF.Audio.auditionActive);assert.equal(await button.textContent(),'Listen: '+label);}
