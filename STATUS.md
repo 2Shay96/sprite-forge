@@ -6,6 +6,12 @@ Updated: 6 October 2026.
 
 Step 4 workflow integration complete. Supplied 0.7 appearance and all 19 workflow modules are maintained in sources; refreshed Trial package consistency passes. Steps 5–21 remain pending. Real-media/listening acceptance is not established by the synthetic integration fixtures. Supplied preview, known-good baseline and old Trial package are preserved. No GECK/mod work occurred.
 
+## Shared integration context
+
+Created C:\Users\Shadow\Desktop\VibeCoding\FNV-SPRITE-FORGE-INTEGRATION-PLAN.md on 6 October after finding the existing mod-specific pipeline plan but no root shared document. It links the actual Studio checkout and mod handoff, tracks Studio capabilities versus user-selected mod-v1.0 support, records haunting defaults/limits and timer questions, and gives both agents an update/acknowledgement log. Mod status is attributed to its existing dated documents, not fresh game tests; Opus acknowledgement is pending. Updated root PROJECTS.md for discoverability and corrected its old Studio checkout path. No mod-owned files were changed.
+
+Read/update this shared file during related sessions after meaningful scope/schema/status changes. It is a local canonical file outside Git; it does not automatically notify Opus or sync to GitHub. Studio's public source checkpoint includes its own plan/status links only; private mod context remains in the shared workspace document. Step 5 has not begun.
+
 ## Step 4 changes and evidence
 
 Planning addition, 6 October: added required Step 14a for a haunting-start delay range, placed after engine-material settings and before save/export audits. User-confirmed default is 1–3 days; each bound can be set from 4 hours to 10 days, with hour-level precision and minimum ≤ maximum. Includes Studio controls, validation/history, persistence/migration, Source Pack timer semantics and later FNV scheduler/save-reload acceptance in plan section 8. Clock unit and start/reset trigger decisions are explicitly pending implementation design. This update changes documentation only; no setting or mod scheduling is implemented yet. Step 5 remains the next selected implementation step.
@@ -58,7 +64,7 @@ Exact Step 2 baseline: SpriteForge.html 0.6.2, SHA-256 93ed65579cf1afb7d542f9975
 
 ## GitHub checkpoint
 
-Confirmed public repository https://github.com/2Shay96/sprite-forge; main tracks origin/main and CLI authentication works. Step 4 remote checkpoint is verified at 50bcccf327095f5893c2157cd67bb0475ffa9443; fresh fetch before the haunting-plan update showed 0 ahead / 0 behind. Scoped planning docs are pushed and verified before session completion; the new commit need not contain its own SHA.
+Confirmed public repository https://github.com/2Shay96/sprite-forge; main tracks origin/main and CLI authentication works. Latest verified remote planning checkpoint before shared-context work is a574de9c5a054fd7d413099eb73819f80b6ec0ff; fresh fetch showed 0 ahead / 0 behind. GitHub connector read access and write permission were verified again without opening a browser/Desktop. Scoped Studio plan/status links are pushed and verified before session completion; the new commit need not contain its own SHA. The root shared file/PROJECTS.md are local, outside Git, and not part of that public commit.
 
 Earlier connector content backup remains on checkpoint/windows-step2-media-2026-10-05 at 90ddca5c7cb7c1ba4e481b4d2bff8154191d8547, with tree equality verified against local 67d469d. CLI authentication now works; the original main-branch history backup is complete. No force push, merge or history rewrite occurred.
 

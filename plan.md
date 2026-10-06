@@ -28,6 +28,8 @@ This plan incorporates the prior roadmap and the user's latest direction. Histor
 
 Read context in this order: this plan and STATUS.md; applicable AGENTS.md and ACTIVE.md; supplied handoff and CLOUD-HANDOFF.md; ALPHA-HANDOFF.md; ARCHITECTURE.md and FEATURE-GUIDE.md; README.md and WORK_LOG.md. LAYOUT-PLAN.md and FEATURE-EXPANSION-PLAN.md are useful historical designs, but some tables describe features that have since been completed. The original proposal in reference/ explains the long-term product boundary.
 
+Shared integration context, added 6 October: read C:\Users\Shadow\Desktop\VibeCoding\FNV-SPRITE-FORGE-INTEGRATION-PLAN.md before related work. It coordinates with the user's Opus 5.5 FNV mod agent, links each project's own plan and records implemented/planned capabilities, runtime support, questions and user decisions. After meaningful Studio scope/schema/feature/acceptance changes, update the relevant Studio status and handoff entries there, preserving the other agent's edits. Studio v1.0 and mod v1.0 remain separate releases; the user chooses which capabilities enter the mod's v1.0. This local shared file is not automatically synchronized or published to GitHub.
+
 ## 3. v1.0 scope
 
 Required:
@@ -201,6 +203,8 @@ User addition, 6 October 2026: Sprite Forge must let the author choose a range f
 
 Before implementation, settle the time unit and trigger semantics: proposed unit is **FNV in-game days**; define exactly what starts the countdown and whether "begins haunting" means spawning the enemy or activating an existing enemy's pursuit. Define when a new delay is sampled, its distribution/boundary rules, and cancellation/reset behavior around defeat, pickup, repack and redeployment. Record these choices rather than assuming a recurring haunt interval was requested.
 
+Review shared integration decisions DEC-03/04 with the mod agent first: existing game behavior and already approved reset exceptions must be reconciled with the new exported timer policy, not silently replaced.
+
 Implement validated minimum/maximum settings, dirty tracking, appropriate Undo/Redo, save/reopen and legacy migration. Both bounds must be finite and within 4 hours–10 days, and minimum must not exceed maximum; equal bounds mean a fixed delay. Preserve legacy behavior for projects without an authored range. Export the range, unit, sampling policy and start/reset events as versioned semantic Source Pack metadata; do not invent game record IDs. Any Studio timer test uses an explicitly simulated clock; displaying these settings does not establish live FNV support.
 
 **Gate:** authoring controls, validation/history, legacy migration, save/reopen and Source Pack metadata agree. Verify the 1–3 day default, exact 4-hour/10-day permitted limits, rejection outside them, hour precision, configured sampling boundaries and fixed-delay behavior using controlled-clock tests. The later FNV adapter has an explicit scheduling contract, including persistence across game save/reload and the intended effects of waiting, sleeping and fast travel. Actual mod integration and game acceptance remain section 8, after Studio v1.0.
@@ -279,6 +283,8 @@ Rebuild and package from the actual project directory using `node build.mjs` and
 ## 8. GECK work after Studio v1.0
 
 This is future sequencing, not authorization to implement it during the Studio steps:
+
+Use the root shared integration plan to keep the mod agent informed as Studio evolves. The mod agent can continue separately approved mod-v1.0 work and ask the user which new capabilities to include or defer; the formal full Studio adapter/runtime integration below retains its Studio-first sequencing.
 
 1. Compare the final Studio contract with the preserved working mod/builder; document supported mappings and gaps.
 2. Adapt one Source Pack into actual compatible game assets while preserving the proven builder conventions.
