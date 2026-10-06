@@ -22,6 +22,8 @@ SF.Studio = (() => {
   const cue=()=>$('audio-slot').value;
   const resolvedBank=()=>SF.Banks.resolve(p(),cue());
   const selectedTake=()=>{const b=resolvedBank();return b?.takes.find(a=>a.id===selectedTakeId)||b?.takes[0]||null;};
+  let listeningKey='';
+  const listenKey=kind=>JSON.stringify([kind,cue(),selectedTake()?.id]);
   const bankKeys=['enabled','mode','selection','avoidLast','playOnEntry','firstDelay','gapMin','gapMax','maxPlays','seed','cooldown','retrigger','maxVoices'];
   const cueHelp={neutral_quips:'Quips share one session across idle and roaming. Combat, pickup and repack cancel them.',idle_loop:'Idle music or hum. Use Idle / roaming quips for spaced remarks.',roam_loop:'Background sound while roaming. Reuse Idle background to keep it running across idle/roam changes.',idle_entry:'Plays once per neutral session, then hands off to quips. A continuous entry loop keeps quips waiting.',defeat_sting:'Plays on defeat, then hands off to Defeated sound. If this sound loops continuously, it lasts until pickup.',release:'Deployment cue. The preview waits for the first delay and longest take; loops/repeats stop when deployment ends.',attack:'Triggered when the sprite lands an encounter attack; cooldown and retrigger rules apply.',hit:'Triggered when the sprite is hit; defeat takes priority on a fatal hit.',pickup:'On pickup. Repacking uses its own cue.',inventory:'Optional inventory sound; empty by default.'};
   function refreshAudio(){const slot=cue(),b=resolvedBank(),settings=b?.settings||SF.Banks.defaults(slot),linked=!!p().audioLinks[slot],a=selectedTake(),disabled=app.busy||!a||linked;
@@ -45,6 +47,7 @@ SF.Studio = (() => {
     $('preview-volume').value=p().preview.volumePercent??70;$('volume-value').textContent=$('preview-volume').value+'%';SF.Audio.waveform($('waveform'),a);audioReadout();
   }
   function audioReadout(){const statuses=SF.Audio.bankStatus,voices=SF.Audio.activeVoices,clock=SF.Audio.clock;
+    for(const kind of ['source','converted']){const active=SF.Audio.auditionActive&&listeningKey===listenKey(kind),paused=SF.Audio.contextState==='suspended',button=$('audio-'+kind);button.textContent=`${active?(paused?'Resume':'Pause'):'Listen'}: ${kind==='source'?'original':'exported WAV'}`;button.ariaPressed=String(!!active&&!paused);}
     const lines=voices.map(v=>`${SF.Banks.labels[v.slot]||v.slot}: ${v.takeLabel||'WAV'}${v.loop?' · loop':''}`);
     for(const [key,s] of Object.entries(statuses))if(s.nextAt!==null&&!s.playing)lines.push(`${key==='audition_bank'?'Bank':'Cue'}: waiting ${Math.max(0,Math.ceil(s.nextAt-clock))}s · ${s.count} played`);
     const message=(SF.Audio.contextState==='suspended'&&SF.Audio.hasPlayback?'Paused. ':'')+(lines.join(' / ')||'Nothing playing.');if($('audio-bank-status').textContent!==message)$('audio-bank-status').textContent=message;
@@ -120,8 +123,9 @@ SF.Studio = (() => {
   $('audio-remove').onclick=()=>editAudio(()=>{const b=ownBank();b.takes=b.takes.filter(a=>a.id!==selectedTakeId);selectedTakeId=null;},'Take removed. Empty cue is silent.');
   for(const [id,redo] of [['audio-undo',false],['audio-redo',true]])$(id).onclick=()=>{const from=redo?audioFuture:audioPast,to=redo?audioPast:audioFuture;if(!from.length)return;app.pause();SF.Audio.stop();to.push(snapshotAudio());Object.assign(p(),from.pop());trimAudioHistory();selectedTakeId=null;store.touch();app.status(redo?'Audio edit restored.':'Audio edit undone.');app.update();};
   $('preview-volume').oninput=()=>{const value=Number($('preview-volume').value);p().preview.volumePercent=value;SF.Audio.setVolume(value/100);$('volume-value').textContent=value+'%';store.touch();};
-  $('audio-source').onclick=()=>{app.pause();SF.Audio.audition(p(),cue(),selectedTakeId).catch(e=>app.status(e.message,true));};
-  $('audio-converted').onclick=()=>app.work(async(signal,progress)=>{progress('Converting and auditioning PCM WAV…');const result=await SF.Audio.auditionConverted(SF.Banks.effective(selectedTake(),resolvedBank()),signal);app.status(`Auditioning WAV · 44.1 kHz mono PCM16 · ${result.metadata.sampleCount} samples.`);});
+  function toggleListening(kind){if(!SF.Audio.auditionActive||listeningKey!==listenKey(kind))return false;if(SF.Audio.contextState==='suspended')SF.Audio.resume().then(audioReadout).catch(e=>app.status(e.message,true));else{app.pause();audioReadout();}return true;}
+  $('audio-source').onclick=()=>{if(toggleListening('source'))return;const key=listenKey('source');app.pause();SF.Audio.audition(p(),cue(),selectedTakeId).then(()=>{listeningKey=key;audioReadout();}).catch(e=>app.status(e.message,true));};
+  $('audio-converted').onclick=()=>{if(toggleListening('converted'))return;const key=listenKey('converted');app.work(async(signal,progress)=>{progress('Converting and auditioning PCM WAV…');const result=await SF.Audio.auditionConverted(SF.Banks.effective(selectedTake(),resolvedBank()),signal);listeningKey=key;audioReadout();app.status(`Auditioning WAV · 44.1 kHz mono PCM16 · ${result.metadata.sampleCount} samples.`);});};
   $('audio-bank-test').onclick=()=>{app.pause();SF.Audio.auditionBank(p(),cue()).then(()=>{audioReadout();app.status('Testing this cue. Pause or Stop audio to end it.');}).catch(e=>app.status(e.message,true));};
   $('audio-bank-pause').onclick=()=>{(SF.Audio.contextState==='suspended'?SF.Audio.resume():SF.Audio.pause()).then(audioReadout).catch(e=>app.status(e.message,true));};
   $('audio-stop').onclick=()=>{app.pause();SF.Audio.stop();audioReadout();};

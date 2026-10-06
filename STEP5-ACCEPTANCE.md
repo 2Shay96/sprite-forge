@@ -2,7 +2,7 @@
 
 Status: automated checkpoint passed; human listening/visible-tab acceptance pending. Step 5 remains unchecked and Step 6 has not started.
 
-Tested Windows 0.7.0 HTML: 1,803,511 bytes, SHA-256 `d2fcabbfcba3f9cd6fb9bd798b1deb1ad28cdc93e8468013b42cee0611d25032`. Project schema 7 and Source Pack schema 6 are unchanged. Chrome 154.0.8037.98 and Edge 154.0.4258.53; Playwright 1.62.1; Node 24.19.0. All browser runs use fresh isolated, offline headless profiles. They do not refresh a user's project tab.
+Initial tested Windows 0.7.0 HTML: 1,803,511 bytes, SHA-256 `d2fcabbfcba3f9cd6fb9bd798b1deb1ad28cdc93e8468013b42cee0611d25032`. Project schema 7 and Source Pack schema 6 are unchanged. Chrome 154.0.8037.98 and Edge 154.0.4258.53; Playwright 1.62.1; Node 24.19.0. All browser runs use fresh isolated, offline headless profiles. They do not refresh a user's project tab.
 
 One real defect was found and fixed in src/keyer.js: continuous preview redraws replaced the source-frame input while a user was typing. The focused browser regression holds a typed value for 200 ms across redraws, then commits it with Tab and verifies the selected frame/interpolated correction. No design or schema change was needed.
 
@@ -17,6 +17,12 @@ One real defect was found and fixed in src/keyer.js: continuous preview redraws 
 | Banks | Weighted/sequence/avoid-last, references, ownership, cooldown, bounded overlap, entry handoff and full lifecycle cancellation have passing component evidence. Focused native audio checks prove periodic limit/pause/stop. Human test tones and state listening supplement this coverage; component results do not establish perceptual audio quality. |
 | Hidden tab | Headless bringToFront did not make document.hidden true. No simulated visibility event is presented as actual hidden-tab evidence. Both browsers require the visible-tab listening checklist. |
 | Offline/layout | No page exceptions or HTTP requests in current browser suites; reference shell/font comparisons pass at three widths. Comprehensive accessibility remains Step 18. |
+
+## Listen-toggle follow-up
+
+User confirmed Chrome Combat music original/WAV comparison worked well and reported unintuitive looping Listen buttons. Fixed both audition controls: Listen starts; Pause suspends; Resume continues the same voice; Stop/end resets Listen. Labels and aria-pressed follow the selected recording and actual audition state. No conversion is repeated on resume. Native clock/one-voice/reset checks pass for both buttons in Chrome/Edge. Human recheck and remaining listening steps are pending.
+
+Latest HTML: 1,804,484 bytes, SHA-256 8c8d03aee4c55d78320372a5666a3b253d4bba4a0e7c859cf78b16d96c684660. Trial: 1,214,984 bytes, SHA-256 2562486a2a452eafd17cd30f4339b9f7aa48bd90d305a00cdac3cde850a3cfc4. Preserved prior Trial under _backup-0.6.2/trial-before-listen-toggle-2026-10-06. Latest receipts: evidence/step5/listen-fixed-regressions (16/16), listen-fixed-chrome and listen-fixed-edge (6/6 each: smoke/shell/workflow/acceptance/browser-media/real-audio), listen-fixed-package (release PASS). Full 560-frame direction evidence below retains its earlier build identity; this audio-control fix changes no image/direction/export schema. Prepared listening project remains valid unchanged.
 
 ## Reproducible receipts
 
